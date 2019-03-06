@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cv>
-    <Person>
-        <FirstName>John</FirstName>
-        <LastName>Golt</LastName>
-        <Birthday>25.04.2001</Birthday>
-        <Contact>
-            <eMail>
-                JohnGolt@mail.com
-            </eMail>
-        </Contact>
-
-    </Person>
-
+    <person>
+        <firstName>John</firstName>
+        <lastName>Golt</lastName>
+        <birthday>1985-07-26</birthday>
+    </person>
+    <contact>
+        <eMail>JohnGolt@mail.com</eMail>
+        <address>6 Avenu, New York, USA</address>
+        <phoneNumber>
+            841653685480
+        </phoneNumber>
+    </contact>
+    <jobPlace>
+        <city>New York</city>
+        <company>IMDB Tecnology</company>
+        <from>08.2015</from>
+        <to>10.2018</to>
+        <position>Developer</position>
+    </jobPlace>
 
 </cv>

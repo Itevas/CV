@@ -12,4 +12,5 @@ repositories {
 
 dependencies {
     compile group: 'org.yaml', name: 'snakeyaml', version: '1.5'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.8'
 }

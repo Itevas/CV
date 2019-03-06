@@ -1,55 +1,38 @@
 package com.lelek.cv;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import java.io.*;
 
 public class ParseXML {
 
     private static final String INPATH = "src/cv.xml";
-    private static Document document;
-    private static Map<String, String> nodeMap = new HashMap<>();
+    private static final String OUTPATH = "src/out.xml";
+    private XmlMapper mapper;
 
-    public void parse() {
-
-        File xmlFile = new File(INPATH);
-        try {
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            try {
-                document = db.parse(xmlFile);
-            } catch (SAXException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-
-        Element mainNode = document.getDocumentElement();
-        fillNodeMap(mainNode.getFirstChild());
-        System.out.println(nodeMap);
-
+    public CV getInfoFromXML() throws IOException {
+        String cvString = inputStreamToString(new FileInputStream(INPATH));
+        mapper = new XmlMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        CV cv = mapper.readValue(cvString, CV.class);
+        return cv;
     }
 
-    void fillNodeMap(Node node) {
-        nodeMap.put(node.getNodeName(), node.getNodeValue());
-        for (Node child = node.getFirstChild();
-             child != null;
-             child = child.getNextSibling()) {
-            fillNodeMap(child);
+    public void writeInFile(CV cv) throws IOException{
+        mapper = new XmlMapper();
 
+        mapper.writeValue(new File(OUTPATH), cv);
+    }
+
+    private String inputStreamToString(InputStream inputStream) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        String string;
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        while ((string = bufferedReader.readLine()) != null) {
+            stringBuilder.append(string +"\n");
         }
+        bufferedReader.close();
+        return stringBuilder.toString();
     }
 
 }

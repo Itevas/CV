@@ -1,0 +1,14 @@
+ <contact>
+            <eMail>JohnGolt@mail.com</eMail>
+            <address>6 Avenu, New York, USA</address>
+            <phoneNumber>
+                841653685480
+            </phoneNumber>
+        </contact>
+        <jobPlace>
+            <city>New York</city>
+            <company>IMDB Tecnology</company>
+            <from>08.2015</from>
+            <to>10.2018</to>
+            <position>Developer</position>
+        </jobPlace>

@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class JobPlace {
     private String company;
     private String city;
-    private LocalDate yearMonthStart;
-    private LocalDate yearMonthEnd;
+    private LocalDate from;
+    private LocalDate to;
     private Position position;
 
     private enum Position {
@@ -15,6 +15,7 @@ public class JobPlace {
 
     public void setCompany(String company) {
         this.company = company;
+        PropertiesMap.addToMapProperties("company", company);
     }
 
     public String getCompany() {
@@ -23,6 +24,7 @@ public class JobPlace {
 
     public void setCity(String city) {
         this.city = city;
+        PropertiesMap.addToMapProperties("city", city);
     }
 
     public String getCity() {
@@ -31,6 +33,7 @@ public class JobPlace {
 
     public void setPosition(Position position) {
         this.position = position;
+        PropertiesMap.addToMapProperties("position", position.name());
     }
 
     public Position getPosition() {
@@ -38,18 +41,20 @@ public class JobPlace {
     }
 
     public void setYearMonthStart(LocalDate yearMonthStart) {
-        this.yearMonthStart = yearMonthStart;
+        this.from = yearMonthStart;
+        PropertiesMap.addToMapProperties("from", from.toString());
     }
 
     public LocalDate getYearMonthStart() {
-        return yearMonthStart;
+        return from;
     }
 
     public void setYearMonthEnd(LocalDate yearMonthEnd) {
-        this.yearMonthEnd = yearMonthEnd;
+        this.to = yearMonthEnd;
+        PropertiesMap.addToMapProperties("to", to.toString());
     }
 
     public LocalDate getYearMonthEnd() {
-        return yearMonthEnd;
+        return to;
     }
 }

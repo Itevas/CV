@@ -1,20 +1,22 @@
 package com.lelek.cv;
 
 public class Contact {
-    private String phoneNumber;
+    private long phoneNumber;
     private String address;
     private String eMail;
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
+        PropertiesMap.addToMapProperties("phoneNumber", String.valueOf(phoneNumber));
     }
 
-    public String getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setAddress(String address) {
         this.address = address;
+        PropertiesMap.addToMapProperties("address", address);
     }
 
     public String getAddress() {
@@ -23,6 +25,7 @@ public class Contact {
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
+        PropertiesMap.addToMapProperties("eMail", eMail);
     }
     public String geteMail(){
         return eMail;

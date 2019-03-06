@@ -8,11 +8,8 @@ import org.yaml.snakeyaml.Yaml;
 
 public class CreateYAML {
 
-    private static final String OUTPATH = "srs/cv.yml";
+    public static final String OUTPATH = "src/out.yml";
 
-    public CreateYAML(){
-
-    }
     public void create(Map<String, String> info){
 
         DumperOptions options = new DumperOptions();
