@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cv>
+    <Person>
+        <FirstName>John</FirstName>
+        <LastName>Golt</LastName>
+        <Birthday>25.04.2001</Birthday>
+        <Contact>
+            <eMail>
+                JohnGolt@mail.com
+            </eMail>
+        </Contact>
+
+    </Person>
+
+
+</cv>
