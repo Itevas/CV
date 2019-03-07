@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <cv>
     <person>
         <firstName>John</firstName>
@@ -7,7 +6,7 @@
     </person>
     <contact>
         <eMail>JohnGolt@mail.com</eMail>
-        <address>6 Avenu, New York, USA</address>
+        <address>6 Avenue, New York, USA</address>
         <phoneNumber>
             841653685480
         </phoneNumber>
@@ -30,3 +29,33 @@
     </jobPlaces>
 </cv>
 
+<cv>
+<person>
+    <firstName>Nicolas</firstName>
+    <lastName>Smith</lastName>
+    <birthday>09.10.1995</birthday>
+</person>
+<contact>
+    <eMail>NSmith@mail.com</eMail>
+    <address>6 Avenue, Detroit, USA</address>
+    <phoneNumber>
+        841653678230
+    </phoneNumber>
+</contact>
+<jobPlaces>
+    <jobPlace>
+        <city>Detroit</city>
+        <company>AMC</company>
+        <from>01.08.2013</from>
+        <to>01.10.2014</to>
+        <position>QAEngineer</position>
+    </jobPlace>
+    <jobPlace>
+        <city>New York</city>
+        <company>SV Group</company>
+        <from>01.11.2016</from>
+        <to>This time</to>
+        <position>Developer</position>
+    </jobPlace>
+</jobPlaces>
+</cv>

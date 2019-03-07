@@ -1,4 +1,4 @@
-package com.lelek.cv;
+package com.lelek.cv.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,14 +11,12 @@ public class Person {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-        PropertiesMap.addToMapProperties("firstName", firstName);
     }
 
     public String getFirstName() { return firstName; }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-        PropertiesMap.addToMapProperties("lastName", lastName);
     }
 
     public String getLastName() {
@@ -26,14 +24,11 @@ public class Person {
     }
 
     public void setBirthday(String stringDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.uuuu");
-        birthday = LocalDate.parse(stringDate, formatter);
-        PropertiesMap.addToMapProperties("birthday", stringDate);
+        birthday = LocalDate.parse(stringDate, DateTimeFormatter.ofPattern("dd.MM.uuuu"));
     }
 
     public String getBirthday() {
         return birthday.format(DateTimeFormatter.ofPattern("dd.MM.uuuu"));
     }
-
 }
 

@@ -1,4 +1,4 @@
-package com.lelek.cv;
+package com.lelek.cv.model;
 
 public class Contact {
     private long phoneNumber;
@@ -7,7 +7,6 @@ public class Contact {
 
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
-        PropertiesMap.addToMapProperties("phoneNumber", String.valueOf(phoneNumber));
     }
 
     public long getPhoneNumber() {
@@ -16,7 +15,6 @@ public class Contact {
 
     public void setAddress(String address) {
         this.address = address;
-        PropertiesMap.addToMapProperties("address", address);
     }
 
     public String getAddress() {
@@ -25,7 +23,6 @@ public class Contact {
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
-        PropertiesMap.addToMapProperties("eMail", eMail);
     }
     public String geteMail(){
         return eMail;
