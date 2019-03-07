@@ -3,7 +3,7 @@
     <person>
         <firstName>John</firstName>
         <lastName>Golt</lastName>
-        <birthday>1985-07-26</birthday>
+        <birthday>26.07.1985</birthday>
     </person>
     <contact>
         <eMail>JohnGolt@mail.com</eMail>
@@ -17,6 +17,13 @@
         <company>IMDB Tecnology</company>
         <from>08.2015</from>
         <to>10.2018</to>
+        <position>QAEngineer</position>
+    </jobPlace>
+    <jobPlace>
+        <city>New York</city>
+        <company>Google LLC</company>
+        <from>11.2018</from>
+        <to>now</to>
         <position>Developer</position>
     </jobPlace>
 

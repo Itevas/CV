@@ -1,6 +1,7 @@
 package com.lelek.cv;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class JobPlace {
     private String company;
@@ -10,7 +11,7 @@ public class JobPlace {
     private Position position;
 
     private enum Position {
-        Developer, DevOps, QAEngineer;
+        Developer, DevOps, QAEngineer
     }
 
     public void setCompany(String company) {
@@ -40,21 +41,23 @@ public class JobPlace {
         return position;
     }
 
-    public void setYearMonthStart(LocalDate yearMonthStart) {
-        this.from = yearMonthStart;
+    public void setFrom(String fromSt) {
+        from = LocalDate.parse(fromSt, DateTimeFormatter.ofPattern("MM.uuuu"));
         PropertiesMap.addToMapProperties("from", from.toString());
     }
 
-    public LocalDate getYearMonthStart() {
-        return from;
+    public String getFrom() {
+        if(from == null){return null;}
+        return from.format(DateTimeFormatter.ofPattern("MM.uuuu"));
     }
 
-    public void setYearMonthEnd(LocalDate yearMonthEnd) {
-        this.to = yearMonthEnd;
+    public void setTo(String toSt) {
+        to = LocalDate.parse(toSt, DateTimeFormatter.ofPattern("MM.uuuu"));
         PropertiesMap.addToMapProperties("to", to.toString());
     }
 
-    public LocalDate getYearMonthEnd() {
-        return to;
+    public String getTo() {
+        if(to == null){return null;}
+        return to.format(DateTimeFormatter.ofPattern("MM.uuuu"));
     }
 }

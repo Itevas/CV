@@ -1,12 +1,13 @@
 package com.lelek.cv;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Person {
 
     private String firstName;
     private String lastName;
-    private LocalDate birthday; //YYYY-MM-DD
+    private LocalDate birthday;
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -25,12 +26,13 @@ public class Person {
     }
 
     public void setBirthday(String stringDate) {
-        birthday = LocalDate.parse(stringDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.uuuu");
+        birthday = LocalDate.parse(stringDate, formatter);
         PropertiesMap.addToMapProperties("birthday", stringDate);
     }
 
     public String getBirthday() {
-        return birthday.toString();
+        return birthday.format(DateTimeFormatter.ofPattern("dd.MM.uuuu"));
     }
 
 }
