@@ -62,19 +62,17 @@ class ReadFrom {
 
     private static void parseTxt(String fileName) throws IOException {
         CV cv = new CV();
+        int i = 0;
         Person person = new Person();
         Contact contact = new Contact();
-        JobPlace jobPlace = new JobPlace();
         List<JobPlace> jobPlaces = new ArrayList<>();
-        Scanner scanTxt = new Scanner(new File(fileName)).useDelimiter(" : ");
+        Scanner scanTxt = new Scanner(new File(fileName)).useDelimiter(":");
 
         while (scanTxt.hasNextLine()) {
             String line = scanTxt.next().trim();
-            LOGGER.info(line);
 
             if (line.equals("firstName")) {
                 person.setFirstName(scanTxt.next().trim());
-                LOGGER.info(person.getFirstName());
             } else if (line.equals("lastName")) {
                 person.setLastName(scanTxt.next().trim());
             } else if (line.equals("birthday")) {
@@ -86,24 +84,23 @@ class ReadFrom {
             } else if (line.equals("eMail")) {
                 contact.seteMail(scanTxt.next().trim());
             } else if (line.equals("company")) {
-                if (jobPlace.getCompany() != null) {
-                    jobPlaces.add(jobPlace);
-                }
-                jobPlace.setCompany(scanTxt.next().trim());
+                jobPlaces.add( new JobPlace());
+                jobPlaces.get(i).setCompany(scanTxt.next().trim());
             } else if (line.equals("city")) {
-                jobPlace.setCity(scanTxt.next().trim());
+                jobPlaces.get(i).setCity(scanTxt.next().trim());
             } else if (line.equals("from")) {
-                jobPlace.setFrom(scanTxt.next().trim());
+                jobPlaces.get(i).setFrom(scanTxt.next().trim());
             } else if (line.equals("to")) {
-                jobPlace.setTo(scanTxt.next().trim());
+                jobPlaces.get(i).setTo(scanTxt.next().trim());
             } else if (line.equals("position")) {
-                jobPlace.setPosition(scanTxt.next().trim());
+                jobPlaces.get(i).setPosition(scanTxt.next().trim());
+                i++;
             }
         }
         scanTxt.close();
         cv.setJobPlaces(jobPlaces);
         cv.setContact(contact);
         cv.setPerson(person);
-        //writeInYmlFile(cv);
+        writeInYmlFile(cv);
     }
 }
