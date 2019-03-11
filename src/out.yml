@@ -1,5 +1,0 @@
-{
-  "private com.lelek.cv.model.Person com.lelek.cv.model.CV.person" : null,
-  "private com.lelek.cv.model.Contact com.lelek.cv.model.CV.contact" : null,
-  "private java.util.List com.lelek.cv.model.CV.jobPlaces" : null
-}

@@ -10,11 +10,10 @@ import java.io.IOException;
 
 class WriterInFile {
 
-    private static final String OUT_PATH_YAML = "src/out.yml";
-    private static ObjectMapper mapper;
+    private static final String OUT_PATH_YAML = "src/main/resources/out.yml";
 
     static void writeInYmlFile(CV cv) throws IOException {
-        mapper = new ObjectMapper(new YAMLFactory());
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         mapper.writeValue(new File(OUT_PATH_YAML), cv);
     }
 }

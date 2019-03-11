@@ -25,7 +25,7 @@ public class CV{
         return contact;
     }
 
-    public void setJobPlace(List<JobPlace> jobPlaces) {
+    public void setJobPlaces(List<JobPlace> jobPlaces) {
         this.jobPlaces = jobPlaces;
     }
 

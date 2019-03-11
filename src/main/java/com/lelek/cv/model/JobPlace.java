@@ -12,7 +12,7 @@ public class JobPlace {
     private boolean currentJob;
     private Position position;
 
-    private enum Position {
+    enum Position {
         Developer, DevOps, QAEngineer
     }
 
@@ -32,8 +32,8 @@ public class JobPlace {
         return city;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPosition(String position) {
+        this.position = Position.valueOf(position);
     }
 
     public Position getPosition() {

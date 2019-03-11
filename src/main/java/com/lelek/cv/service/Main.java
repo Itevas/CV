@@ -1,4 +1,4 @@
-package com.lelek.cv.app;
+package com.lelek.cv.service;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
 
-        readFrom("cv.json");
+        readFrom("cv.txt");
+
     }
 }
