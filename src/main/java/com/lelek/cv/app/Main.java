@@ -6,8 +6,8 @@ import static com.lelek.cv.service.ReadFrom.readFrom;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
 
-        readFrom("cvx2.xml");
+        readFrom("cv.json");
     }
 }

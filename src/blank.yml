@@ -1,0 +1,20 @@
+---
+person:
+  firstName:
+  lastName:
+  birthday:
+contact:
+  phoneNumber:
+  address:
+  eMail:
+jobPlaces:
+  - company:
+    city:
+    from:
+    to:
+    position:
+  - company:
+    city:
+    from:
+    to:
+    position:

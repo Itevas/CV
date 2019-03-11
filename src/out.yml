@@ -1,7 +1,5 @@
-!!com.lelek.cv.model.CV
-contact: {address: '6 Avenue, New York, USA', eMail: JohnGolt@mail.com, phoneNumber: 841653685480}
-jobPlaces:
-- {city: New York, company: IMDB Tecnology, from: 01.08.2015, position: QAEngineer,
-  to: 01.10.2018}
-- {city: New York, company: Google LLC, from: 01.11.2018, position: Developer, to: This time}
-person: {birthday: 26.07.1985, firstName: John, lastName: Golt}
+{
+  "private com.lelek.cv.model.Person com.lelek.cv.model.CV.person" : null,
+  "private com.lelek.cv.model.Contact com.lelek.cv.model.CV.contact" : null,
+  "private java.util.List com.lelek.cv.model.CV.jobPlaces" : null
+}
