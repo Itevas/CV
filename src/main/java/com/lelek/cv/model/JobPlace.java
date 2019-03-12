@@ -1,14 +1,27 @@
 package com.lelek.cv.model;
 
+import com.sun.istack.internal.Nullable;
+
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
+import java.lang.annotation.Target;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+
 public class JobPlace {
+
     private String company;
     private String city;
+
+    @Past
     private LocalDate from;
+
+    @PastOrPresent
     private LocalDate to;
+
     private boolean currentJob;
     private Position position;
 

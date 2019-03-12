@@ -16,4 +16,7 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databindl', version: '2.2.3'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
     compile group: 'org.json', name: 'json', version: '20180130'
+    compile group: 'org.testng', name: 'testng', version: '6.8'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
+
 }

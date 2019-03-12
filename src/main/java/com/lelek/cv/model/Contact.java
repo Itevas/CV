@@ -1,8 +1,18 @@
 package com.lelek.cv.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Contact {
+
+    @Size(min = 10, max=10, message = "wrong phone number")
     private long phoneNumber;
+
+    @NotNull
     private String address;
+
+    @Email
     private String eMail;
 
     public void setPhoneNumber(long phoneNumber) {
