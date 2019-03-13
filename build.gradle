@@ -17,6 +17,10 @@ dependencies {
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
     compile group: 'org.json', name: 'json', version: '20180130'
     compile group: 'org.testng', name: 'testng', version: '6.8'
-    compile group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.15.Final'
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator-annotation-processor', version: '6.0.2.Final'
+    compile group: 'javax.el', name: 'javax.el-api', version: '3.0.1-b06'
+    compile group: 'org.glassfish.web', name: 'el-impl', version: '2.2.1-b05'
 
 }

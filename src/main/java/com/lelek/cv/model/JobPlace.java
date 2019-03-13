@@ -1,7 +1,12 @@
 package com.lelek.cv.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.lelek.cv.service.LocalDateDeserializer;
+import com.lelek.cv.service.LocalDateSerializer;
 import com.sun.istack.internal.Nullable;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.PastOrPresent;
@@ -13,16 +18,27 @@ import java.time.format.FormatStyle;
 
 public class JobPlace {
 
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.uuuu");
+
+    @NotNull
     private String company;
+
+    @NotNull
     private String city;
 
     @Past
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate from;
 
     @PastOrPresent
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate to;
 
     private boolean currentJob;
+
+    @NotNull
     private Position position;
 
     enum Position {
@@ -53,29 +69,28 @@ public class JobPlace {
         return position;
     }
 
-    public void setFrom(String fromSt) {
-        from = LocalDate.parse(fromSt, DateTimeFormatter.ofPattern("dd.MM.uuuu"));
+    public void setFrom(LocalDate from) {
+        this.from = from;
     }
 
-    public String getFrom() {
-        return from.format(DateTimeFormatter.ofPattern("dd.MM.uuuu"));
+    public LocalDate getFrom() {
+        return from;
     }
 
-    public void setTo(String toSt) {
-        if (toSt.equals("This time")) {
+    public void setTo(LocalDate to) {
+        if (to.equals(LocalDate.now())) {
             currentJob = true;
-            to = LocalDate.parse("01.01.1971", DateTimeFormatter.ofPattern("dd.MM.uuuu"));
         } else {
             currentJob = false;
-            to = LocalDate.parse(toSt, DateTimeFormatter.ofPattern("dd.MM.uuuu"));
         }
+        this.to = to;
     }
 
-    public String getTo() {
+    public LocalDate getTo() {
         if (currentJob) {
-            return "This time";
+            return to = LocalDate.now();
         } else {
-            return to.format(DateTimeFormatter.ofPattern("dd.MM.uuuu"));
+            return to;
         }
     }
 }

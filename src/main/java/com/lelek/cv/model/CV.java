@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CV{
+
     private Person person = new Person();
     private Contact contact = new Contact();
 

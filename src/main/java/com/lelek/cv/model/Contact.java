@@ -7,7 +7,8 @@ import javax.validation.constraints.Size;
 public class Contact {
 
     @Size(min = 10, max=10, message = "wrong phone number")
-    private long phoneNumber;
+
+    private String phoneNumber;
 
     @NotNull
     private String address;
@@ -15,11 +16,11 @@ public class Contact {
     @Email
     private String eMail;
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -34,6 +35,7 @@ public class Contact {
     public void seteMail(String eMail) {
         this.eMail = eMail;
     }
+
     public String geteMail(){
         return eMail;
     }

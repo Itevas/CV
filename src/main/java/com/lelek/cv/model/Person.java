@@ -1,5 +1,11 @@
 package com.lelek.cv.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.lelek.cv.service.LocalDateDeserializer;
+import com.lelek.cv.service.LocalDateSerializer;
+
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -9,15 +15,20 @@ import java.time.format.DateTimeFormatter;
 public class Person {
 
     @NotNull
+    @NotEmpty
     @Size(min = 1, max = 16)
     private String firstName;
 
     @NotNull
+    @NotEmpty
     @Size(min = 1, max = 16)
     private String lastName;
 
     @NotNull
+ //   @NotEmpty
     @Past
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthday;
 
     public void setFirstName(String firstName) {
@@ -34,12 +45,12 @@ public class Person {
         return lastName;
     }
 
-    public void setBirthday(String stringDate) {
-        birthday = LocalDate.parse(stringDate, DateTimeFormatter.ofPattern("dd.MM.uuuu"));
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
-    public String getBirthday() {
-        return birthday.format(DateTimeFormatter.ofPattern("dd.MM.uuuu"));
+    public LocalDate getBirthday() {
+        return birthday;
     }
 }
 

@@ -24,10 +24,7 @@ out/
 ##########################
 .idea/**/gradle.xml
 .idea/**/libraries
-gradle/
-.gradle/
-gradlew
-gradlew.bat
+
 
 
 # Gradle and Maven with auto-import

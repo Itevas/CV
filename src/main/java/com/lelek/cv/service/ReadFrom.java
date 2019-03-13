@@ -10,6 +10,8 @@ import com.lelek.cv.model.Person;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,10 +19,14 @@ import java.util.logging.Logger;
 
 import static com.lelek.cv.service.WriterInFile.writeInYmlFile;
 
-class ReadFrom {
+public class ReadFrom {
 
     private static final String PATH = "src/main/resources/";
+
     private static Logger LOGGER = Logger.getLogger("com.lelek.cv.service.ReadFrom");
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.uuuu");
+
     private static boolean goOn = true;
 
     static void readFrom(String fileName) throws IOException {
@@ -76,9 +82,9 @@ class ReadFrom {
             } else if (line.equals("lastName")) {
                 person.setLastName(scanTxt.next().trim());
             } else if (line.equals("birthday")) {
-                person.setBirthday(scanTxt.next().trim());
+                person.setBirthday(LocalDate.parse(scanTxt.next().trim(), FORMATTER));
             } else if (line.equals("phoneNumber")) {
-                contact.setPhoneNumber(Long.parseLong(scanTxt.next().trim()));
+                contact.setPhoneNumber(scanTxt.next().trim());
             } else if (line.equals("address")) {
                 contact.setAddress(scanTxt.next().trim());
             } else if (line.equals("eMail")) {
@@ -89,9 +95,14 @@ class ReadFrom {
             } else if (line.equals("city")) {
                 jobPlaces.get(i).setCity(scanTxt.next().trim());
             } else if (line.equals("from")) {
-                jobPlaces.get(i).setFrom(scanTxt.next().trim());
+                jobPlaces.get(i).setFrom(LocalDate.parse(scanTxt.next().trim(), FORMATTER));
             } else if (line.equals("to")) {
-                jobPlaces.get(i).setTo(scanTxt.next().trim());
+                String date = scanTxt.next().trim();
+                if (date.equals("This time")) {
+                    jobPlaces.get(i).setTo(LocalDate.now());
+                } else {
+                    jobPlaces.get(i).setTo(LocalDate.parse(date, FORMATTER));
+                }
             } else if (line.equals("position")) {
                 jobPlaces.get(i).setPosition(scanTxt.next().trim());
                 i++;
