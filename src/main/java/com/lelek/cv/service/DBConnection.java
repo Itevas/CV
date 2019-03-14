@@ -1,34 +1,45 @@
 package com.lelek.cv.service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.logging.Logger;
 
 public class DBConnection {
 
     private static final Logger LOGGER = Logger.getLogger("com.lelek.cv.service.DBConnection");
 
-    private final String URL = "jdbc:postgresql://localhost/cv";
-    private String user = "postgresql";
-    private String pass = "postgresql";
+    private final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private final String user = "postgres";
+    private final String pass = "postgres";
+    private Connection connection;
 
-    public Connection connect(){
-        Connection connection = null;
+    public Connection connect() throws SQLException, ClassNotFoundException {
 
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        Class.forName("org.postgresql.Driver");
+        connection = DriverManager.getConnection(URL, user, pass);
+        if(connection != null) {
+        LOGGER.info("Connection established =" + connection);
         }
-
-        try {
-            connection = DriverManager.getConnection(URL, user, pass);
-            LOGGER.info("Connection established");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         return connection;
+    }
+
+    public void writeInTable(Connection connect)throws SQLException{
+
+        String query = "INSERT INTO person VALUES ('Vasyl', 'Lelek', '26.07.1985')";
+        Statement statement = connect.createStatement();
+        statement.executeUpdate(query);
+
+    }
+
+    public void readFromTable (Connection connect) throws  SQLException{
+        String query = "SELECT * FROM person";
+        Statement statement = connect.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+
+        while (resultSet.next()){
+            System.out.println();
+            for (int i = 1; i<4; i++) {
+                System.out.print(resultSet.getString(i) + "\t");
+            }
+        }
     }
 }
