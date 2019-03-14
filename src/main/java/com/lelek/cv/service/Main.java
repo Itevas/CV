@@ -15,7 +15,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
-        (new ValidateClass()).validate(readFromFile());
         writeInYaml(readFromFile());
 //        DBConnection dbConnection = new DBConnection();
 //        dbConnection.writeInTable(dbConnection.connect());

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lelek.cv.service.LocalDateDeserializer;
 import com.lelek.cv.service.LocalDateSerializer;
+import com.lelek.cv.service.ValidateClass;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -32,7 +33,7 @@ public class JobPlace {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate to;
 
-    private boolean currentJob;
+    private static boolean currentJob;
 
     @NotNull
     private Position position;
@@ -41,45 +42,20 @@ public class JobPlace {
         Developer, DevOps, QAEngineer
     }
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
     public String getCompany() {
         return company;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setPosition(String position) {
-        this.position = Position.valueOf(position);
-    }
-
     public Position getPosition() {
         return position;
     }
 
-    public void setFrom(LocalDate from) {
-        this.from = from;
-    }
-
     public LocalDate getFrom() {
         return from;
-    }
-
-    public void setTo(LocalDate to) {
-        if (to.equals(LocalDate.now())) {
-            currentJob = true;
-        } else {
-            currentJob = false;
-        }
-        this.to = to;
     }
 
     public LocalDate getTo() {
@@ -95,6 +71,41 @@ public class JobPlace {
 
         public JobPlaceBuilder(){
             jobPlace = new JobPlace();
+        }
+
+        public JobPlaceBuilder setCompany(String company) {
+            jobPlace.company = company;
+            return this;
+        }
+
+        public JobPlaceBuilder  setCity(String city) {
+            jobPlace.city = city;
+            return this;
+        }
+
+        public JobPlaceBuilder  setPosition(String position) {
+            jobPlace.position = Position.valueOf(position);
+            return this;
+        }
+
+        public JobPlaceBuilder setFrom(LocalDate from) {
+            jobPlace.from = from;
+            return this;
+        }
+
+        public JobPlaceBuilder setTo(LocalDate to) {
+            if (to.equals(LocalDate.now())) {
+                currentJob = true;
+            } else {
+                currentJob = false;
+            }
+            jobPlace.to = to;
+            return this;
+        }
+
+        public JobPlace build(){
+            (new ValidateClass()).validate(jobPlace);
+            return jobPlace;
         }
     }
 }

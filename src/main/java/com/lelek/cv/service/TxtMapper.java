@@ -25,7 +25,6 @@ public class TxtMapper {
 
     public CV readValue() throws IOException {
         CV cv = new CV();
-        int i = 0;
         List<JobPlace> jobPlaces = new ArrayList<>();
         Scanner scanTxt = new Scanner(new File(fileName)).useDelimiter(":");
 
@@ -45,22 +44,28 @@ public class TxtMapper {
             } else if (line.equals("eMail")) {
                 map.put(line, (scanTxt.next().trim()));
             } else if (line.equals("company")) {
-                jobPlaces.add(new JobPlace());
-                jobPlaces.get(i).setCompany(scanTxt.next().trim());
+                map.put(line, (scanTxt.next().trim()));
             } else if (line.equals("city")) {
-                jobPlaces.get(i).setCity(scanTxt.next().trim());
+                map.put(line, (scanTxt.next().trim()));
             } else if (line.equals("from")) {
-                jobPlaces.get(i).setFrom(LocalDate.parse(scanTxt.next().trim(), FORMATTER));
+                map.put(line, (LocalDate.parse(scanTxt.next().trim(), FORMATTER)));
             } else if (line.equals("to")) {
                 String date = scanTxt.next().trim();
                 if (date.equals("This time")) {
-                    jobPlaces.get(i).setTo(LocalDate.now());
+                    map.put(line, (LocalDate.now()));
                 } else {
-                    jobPlaces.get(i).setTo(LocalDate.parse(date, FORMATTER));
+                    map.put(line, (LocalDate.parse(date, FORMATTER)));
                 }
             } else if (line.equals("position")) {
-                jobPlaces.get(i).setPosition(scanTxt.next().trim());
-                i++;
+                map.put(line, (scanTxt.next().trim()));
+
+                jobPlaces.add((new JobPlace.JobPlaceBuilder())
+                        .setCity(map.get("city").toString())
+                        .setCompany(map.get("company").toString())
+                        .setPosition(map.get("position").toString())
+                        .setFrom((LocalDate) map.get("from"))
+                        .setTo((LocalDate) map.get("to"))
+                        .build());
             }
         }
         scanTxt.close();
