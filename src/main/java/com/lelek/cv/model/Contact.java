@@ -7,7 +7,6 @@ import javax.validation.constraints.Size;
 public class Contact {
 
     @Size(min = 10, max=10, message = "wrong phone number")
-
     private String phoneNumber;
 
     @NotNull

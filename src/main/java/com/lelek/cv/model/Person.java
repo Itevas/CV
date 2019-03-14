@@ -5,52 +5,78 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lelek.cv.service.LocalDateDeserializer;
 import com.lelek.cv.service.LocalDateSerializer;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Set;
+import java.util.logging.Logger;
+
+
 
 public class Person {
 
-    @NotNull
-    @NotEmpty
-    @Size(min = 1, max = 16)
     private String firstName;
 
-    @NotNull
-    @NotEmpty
-    @Size(min = 1, max = 16)
+    private Person() {
+    }
+
+    @NotNull (message = "lastName might not be NULL")
+    @NotEmpty (message = "Empty lastName")
+    @Size(min = 1, max = 16, message = "Invalid lenght lastName")
     private String lastName;
 
-    @NotNull
- //   @NotEmpty
-    @Past
+    @NotNull (message = "birthday might not be NULL")
+    @Past (message = "birthday must be in past")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthday;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getFirstName() { return firstName; }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    @NotNull (message = "firstName might not be NULL")
+    @NotEmpty (message = "Empty firstName")
+    @Size(min = 1, max = 16, message = "Invalid lenght firstName")
+    public String getFirstName() {
+        return firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
     public LocalDate getBirthday() {
         return birthday;
+    }
+
+    public static class PersonBuilder {
+
+        private Person person;
+
+        public PersonBuilder() {
+            person = new Person();
+        }
+
+        public PersonBuilder setFirstName(String firstName) {
+            person.firstName = firstName;
+            return this;
+        }
+
+        public PersonBuilder setLastName(String lastName) {
+            person.lastName = lastName;
+            return this;
+        }
+
+        public PersonBuilder setBirthday(LocalDate birthday) {
+            person.birthday = birthday;
+            return this;
+        }
+
+        public Person build() {
+            return person;
+        }
     }
 }
 

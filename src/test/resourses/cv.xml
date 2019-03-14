@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cv>
+    <person>
+        <firstName>John</firstName>
+        <lastName>Golt</lastName>
+        <birthday>26.07.1985</birthday>
+    </person>
+    <contact>
+        <eMail>JohnGolt@gmail.com</eMail>
+        <address>6 Avenu, New York, USA</address>
+        <phoneNumber>0953982280</phoneNumber>
+    </contact>
+    <jobPlaces>
+        <jobPlace>
+            <city>New York</city>
+            <company>IMDB Tecnology</company>
+            <from>01.08.2015</from>
+            <to>01.10.2018</to>
+            <position>QAEngineer</position>
+        </jobPlace>
+        <jobPlace>
+            <city>New York</city>
+            <company>Google LLC</company>
+            <from>01.11.2018</from>
+            <to>This time</to>
+            <position>Developer</position>
+        </jobPlace>
+    </jobPlaces>
+</cv>
