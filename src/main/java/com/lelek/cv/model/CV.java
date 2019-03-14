@@ -5,8 +5,8 @@ import java.util.List;
 
 public class CV{
 
-    private Person person = new Person.PersonBuilder().build();
-    private Contact contact = new Contact();
+    private Person person;
+    private Contact contact;
 
     private List<JobPlace> jobPlaces = new ArrayList<>();
 

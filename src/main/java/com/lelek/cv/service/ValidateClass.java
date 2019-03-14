@@ -21,15 +21,15 @@ public class ValidateClass {
 
         List<JobPlace> jobPlaces = cv.getJobPlaces();
 
-        Set<ConstraintViolation<Person>> personViolations = getValidator().validate(cv.getPerson());
-        for (ConstraintViolation<Person> personViolation : personViolations) {
-            LOGGER.severe(personViolation.getMessage());
-        }
-
-        Set<ConstraintViolation<Contact>> contactViolations = getValidator().validate(cv.getContact());
-        for (ConstraintViolation<Contact> contactViolation : contactViolations) {
-            LOGGER.severe(contactViolation.getMessage());
-        }
+//        Set<ConstraintViolation<Person>> personViolations = getValidator().validate(cv.getPerson());
+//        for (ConstraintViolation<Person> personViolation : personViolations) {
+//            LOGGER.severe(personViolation.getMessage());
+//        }
+//
+//        Set<ConstraintViolation<Contact>> contactViolations = getValidator().validate(cv.getContact());
+//        for (ConstraintViolation<Contact> contactViolation : contactViolations) {
+//            LOGGER.severe(contactViolation.getMessage());
+//        }
 
         for (JobPlace jobPlace : jobPlaces) {
             Set<ConstraintViolation<JobPlace>> jabPlaceViolations = getValidator().validate(jobPlace);
@@ -38,6 +38,15 @@ public class ValidateClass {
             }
         }
 
+    }
+
+    public void validate(Object object){
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Set<ConstraintViolation<Object>> personViolations = validatorFactory.getValidator().validate(object);
+        for (ConstraintViolation<Object> personViolation : personViolations) {
+
+            LOGGER.severe(personViolation.getMessage());
+        }
     }
 
     public static Validator getValidator() {

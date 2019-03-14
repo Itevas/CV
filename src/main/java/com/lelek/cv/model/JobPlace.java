@@ -4,21 +4,17 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lelek.cv.service.LocalDateDeserializer;
 import com.lelek.cv.service.LocalDateSerializer;
-import com.sun.istack.internal.Nullable;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.PastOrPresent;
-import java.lang.annotation.Target;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
+
 
 
 public class JobPlace {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.uuuu");
+    private JobPlace(){}
 
     @NotNull
     private String company;
@@ -41,7 +37,7 @@ public class JobPlace {
     @NotNull
     private Position position;
 
-    enum Position {
+    public enum Position {
         Developer, DevOps, QAEngineer
     }
 
@@ -91,6 +87,14 @@ public class JobPlace {
             return to = LocalDate.now();
         } else {
             return to;
+        }
+    }
+    public static class JobPlaceBuilder{
+
+        private JobPlace jobPlace;
+
+        public JobPlaceBuilder(){
+            jobPlace = new JobPlace();
         }
     }
 }

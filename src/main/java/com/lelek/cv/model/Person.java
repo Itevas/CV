@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lelek.cv.service.LocalDateDeserializer;
 import com.lelek.cv.service.LocalDateSerializer;
+import com.lelek.cv.service.ValidateClass;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -75,6 +76,7 @@ public class Person {
         }
 
         public Person build() {
+            (new ValidateClass()).validate(person);
             return person;
         }
     }

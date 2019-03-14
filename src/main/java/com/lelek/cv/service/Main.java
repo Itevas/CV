@@ -5,7 +5,6 @@ import com.lelek.cv.model.CV;
 import java.io.IOException;
 import java.sql.SQLException;
 
-// Builder + validation = NUULOREMTY ?!?!!?
 //Create DB
 //Create WEB
 //Create Client-server
