@@ -8,6 +8,8 @@ import java.sql.SQLException;
 //Create DB
 //Create WEB
 //Create Client-server
+//Add singleTone
+// Розказати про паттерн Facade і продемонструвати приклад коду
 
 public class Main {
 
@@ -15,10 +17,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
-        writeInYaml(readFromFile());
-//        DBConnection dbConnection = new DBConnection();
-//        dbConnection.writeInTable(dbConnection.connect());
-//        dbConnection.readFromTable(dbConnection.connect());
+//        writeInYaml(readFromFile());
+        DBConnection dbConnection = new DBConnection();
+
 
     }
 
