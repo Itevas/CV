@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class WriteInDBListOfQueries {
+public class WriteCvInDBListOfQueries {
 
     private final String GET_CV_NUMBER = "SELECT MAX(cv_id) FROM cv;";
     private final String GET_JOBPLACE_NUMBER = "SELECT MAX(id) FROM jobplace;";
@@ -20,7 +20,7 @@ public class WriteInDBListOfQueries {
 
     private List<String> queries = new LinkedList<>();
 
-    public WriteInDBListOfQueries(CV cv) {
+    public WriteCvInDBListOfQueries(CV cv) {
         this.cv = cv;
         countOfJobs = cv.getJobPlaces().size();
     }

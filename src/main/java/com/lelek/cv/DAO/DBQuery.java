@@ -23,7 +23,7 @@ public class DBQuery {
     public void writeCvInTable(CV cv) throws SQLException, ClassNotFoundException {
 
         Statement statement = connect.createStatement();
-        List<String>queries = (new WriteInDBListOfQueries(cv)).getListOfQueries();
+        List<String>queries = (new WriteCvInDBListOfQueries(cv)).getListOfQueries();
         for (String query : queries) {
             statement.executeUpdate(query);
         }

@@ -7,13 +7,15 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-//Create DB
+//Create WEB
+//Add queries:
+//Update CV in dataBase by person FLNames
+//Search CV by fields
 //SELECT CV and writeInYml
 //SELECT FLNames to List
 //SELECT arbitrary fields to list
-//Create WEB
+
 //Create Client-server
-//Add singleTone
 // Розказати про паттерн Facade і продемонструвати приклад коду
 
 public class Main {
