@@ -3,6 +3,7 @@ package com.lelek.cv.service;
 import com.lelek.cv.model.CV;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 //Create DB
@@ -17,10 +18,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
+//        Check in office
+//        Connection connection = DBConnection.getInstance().getConnection();
+
+
+
 //        writeInYaml(readFromFile());
-        DBConnection dbConnection = new DBConnection();
-
-
     }
 
     public static CV readFromFile() throws IOException {

@@ -6,38 +6,34 @@ import java.util.logging.Logger;
 public class DBConnection {
 
     private static final Logger LOGGER = Logger.getLogger("com.lelek.cv.service.DBConnection");
-
-    String getCvNumber = "SELECT MAX(cv_id) FROM cv;";
-    String getjobPlaceNumber = "SELECT MAX(id) FROM jobplace;";
-    private int cvNumber, jobPlaceNumber;
+    private static DBConnection instance;
 
     private final String URL = "jdbc:postgresql://localhost:5432/postgres";
     private final String user = "postgres";
     private final String pass = "postgres";
     private Connection connection;
 
-    //make as SingleTone
-    public Connection connect() throws SQLException, ClassNotFoundException {
-
+    private DBConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
-        connection = DriverManager.getConnection(URL, user, pass);
-        if(connection != null) {
-        LOGGER.info("!!!Connection established = " + connection);
+        this.connection = DriverManager.getConnection(URL, user, pass);
+        if (connection != null) {
+            LOGGER.info("!!!Connection established = " + connection);
+        } else {
+            LOGGER.info("!!!Connection is failed = " + connection);
         }
+    }
+
+    public Connection getConnection() {
         return connection;
     }
 
-    public void writeInTable(Connection connect, String query)throws SQLException{
-        Statement statement = connect.createStatement();
-        statement.executeUpdate(query);
-
+    public static DBConnection getInstance() throws SQLException, ClassNotFoundException{
+        if (instance == null){
+            instance = new DBConnection();
+        } else if (instance.getConnection().isClosed()){
+            instance = new DBConnection();
+        }
+        return instance;
     }
 
-    public ResultSet readFromTable (Connection connect, String query) throws  SQLException {
-
-        Statement statement = connect.createStatement();
-        ResultSet resultSet = statement.executeQuery(query);
-        return resultSet;
-
-    }
 }
