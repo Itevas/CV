@@ -1,4 +1,4 @@
-package com.lelek.cv.service;
+package com.lelek.cv.DAO;
 
 import java.sql.*;
 import java.util.logging.Logger;

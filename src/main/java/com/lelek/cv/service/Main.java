@@ -1,5 +1,6 @@
 package com.lelek.cv.service;
 
+import com.lelek.cv.DAO.DBQuery;
 import com.lelek.cv.model.CV;
 
 import java.io.IOException;
@@ -7,6 +8,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 //Create DB
+//SELECT CV and writeInYml
+//SELECT FLNames to List
+//SELECT arbitrary fields to list
 //Create WEB
 //Create Client-server
 //Add singleTone
@@ -18,10 +22,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
-//        Check in office
-//        Connection connection = DBConnection.getInstance().getConnection();
-
-
+        //Check in office
+//        DBQuery dbQuery = new DBQuery();
+//        dbQuery.writeCvInTable(readFromFile());
 
 //        writeInYaml(readFromFile());
     }
