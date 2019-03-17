@@ -36,4 +36,10 @@ public class DBQuery {
         ResultSet resultSet = statement.executeQuery(query);
         return resultSet;
     }
+
+    //implement method
+    public CV getCVFromDB(String cvId){
+        CV cv = new CV();
+        return cv;
+    }
 }
