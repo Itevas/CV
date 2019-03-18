@@ -27,15 +27,11 @@ public class CVRedactorFacade {
         (new DBQuery()).writeCvInTable(cv);
     }
 
+    public void clearAllTables() throws SQLException, ClassNotFoundException{
+        (new DBQuery()).clearTable();
+    }
+
     public List<CV> readCVFromDatabase(String cvId) throws SQLException, ClassNotFoundException{
-        List<CV> cvList = new ArrayList<>();
-        if (cvId.equals("All")) {
-            for(int i = 0; i<cvId.length(); i++){
-            cvList.add((new DBQuery()).getCVFromDB(cvId));
-            }
-        } else {
-            cvList.add((new DBQuery()).getCVFromDB(cvId));
-        }
-        return cvList;
+        return ((new DBQuery()).readCVFromTable(cvId));
     }
 }

@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class WriteCvInDBListOfQueries {
+public class WriteListOfQueriesCreator {
 
     private final String GET_CV_NUMBER = "SELECT MAX(cv_id) FROM cv;";
-    private final String GET_JOBPLACE_NUMBER = "SELECT MAX(id) FROM jobplace;";
+    private final String GET_JOBPLACE_NUMBER = "SELECT MAX(jobplace_id) FROM jobplace;";
 
     private final int INDEX = 1;
     private int cvNumber, jobPlaceNumber;
@@ -20,7 +20,7 @@ public class WriteCvInDBListOfQueries {
 
     private List<String> queries = new LinkedList<>();
 
-    public WriteCvInDBListOfQueries(CV cv) {
+    public WriteListOfQueriesCreator(CV cv) {
         this.cv = cv;
         countOfJobs = cv.getJobPlaces().size();
     }
@@ -41,10 +41,10 @@ public class WriteCvInDBListOfQueries {
 
 
     private String jobPlaceInfoWriteQuery(int i) {
-        return "INSERT INTO jobplace VALUES (" + jobPlaceNumber + ", '" + cv.getJobPlaces().get(i).getCompany() +
+        return "INSERT INTO jobplace VALUES ('" + cv.getJobPlaces().get(i).getCompany() +
                 "', '" + cv.getJobPlaces().get(i).getCity() + "', '" + cv.getJobPlaces().get(i).getFrom() + "', '" +
                 cv.getJobPlaces().get(i).getTo() + "', '" + cv.getJobPlaces().get(i).getPosition() + "', " +
-                cvNumber + ")";
+                jobPlaceNumber + ", " + cvNumber + ")";
     }
 
     public List<String> getListOfQueries() throws SQLException, ClassNotFoundException {
@@ -52,7 +52,7 @@ public class WriteCvInDBListOfQueries {
         queries.add(personInfoWriteQuery());
         queries.add(cvInfoWriteQuery());
         queries.add(contactInfoWriteQuery());
-        for (int c = 1; c <= countOfJobs; c++) {
+        for (int c = 0; c < countOfJobs; c++) {
             queries.add(jobPlaceInfoWriteQuery(c));
             jobPlaceNumber++;
         }

@@ -1,22 +1,19 @@
 package com.lelek.cv.service;
 
 import com.lelek.cv.DAO.DBQuery;
+import com.lelek.cv.DAO.FindCvListOfQueriesCreator;
 import com.lelek.cv.model.CV;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 //Create WEB
-//Add queries:
-//Update CV in dataBase by person FLNames
-//Search CV by fields
-//SELECT CV and writeInYml
-//SELECT FLNames to List
-//SELECT arbitrary fields to list
-
 //Create Client-server
-// Розказати про паттерн Facade і продемонструвати приклад коду
+// Patterns
+//out List of CV
+//in List of CV
 
 public class Main {
 
@@ -24,20 +21,20 @@ public class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
-        //Check in office
-//        DBQuery dbQuery = new DBQuery();
-//        dbQuery.writeCvInTable(readFromFile());
+        CVRedactorFacade facade = new CVRedactorFacade(file);
 
-//        writeInYaml(readFromFile());
-    }
+//        facade.writeCVInDatabase();
 
-    public static CV readFromFile() throws IOException {
-        ReadFrom readFrom = new ReadFrom();
-        return readFrom.readFile(file);
-    }
 
-    public static void writeInYaml(CV cv) throws IOException {
-        WriterInFile writerInFile = new WriterInFile();
-        writerInFile.writeInYmlFile(cv);
+//        facade.clearAllTables();
+
+        List<CV> cvList = (new DBQuery()).readCVFromTable((new FindCvListOfQueriesCreator()).getAllFromTable());
+        for (CV cv : cvList){
+            System.out.println(cv.getPerson().getFirstName());
+            System.out.println(cv.getPerson().getBirthday());
+        }
+
+
+
     }
 }
