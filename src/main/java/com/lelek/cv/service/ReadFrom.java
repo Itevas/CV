@@ -36,7 +36,7 @@ public class ReadFrom {
                     } else if (line.charAt(i) == '-') {
 
                         return (new ObjectMapper(new YAMLFactory()).readValue(new File(fileName), CV.class));
-
+//Add can't parse file condition
                     } else {
 
                         return ((new TxtMapper(fileName)).readValue());

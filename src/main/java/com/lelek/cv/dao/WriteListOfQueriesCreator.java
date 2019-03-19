@@ -1,4 +1,4 @@
-package com.lelek.cv.DAO;
+package com.lelek.cv.dao;
 
 import com.lelek.cv.model.CV;
 

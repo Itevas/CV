@@ -13,6 +13,12 @@ class WriterInFile {
 
     private static final String OUT_PATH_YAML = "src/main/resources/out.yml";
 
+    public void writeInYmlFile(String fileName, CV cv) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+        mapper.writeValue(new File(fileName), cv);
+    }
+
     public void writeInYmlFile(CV cv) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());

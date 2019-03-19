@@ -18,7 +18,6 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 
-
 public class Person {
 
     private String firstName;
@@ -26,19 +25,19 @@ public class Person {
     private Person() {
     }
 
-    @NotNull (message = "lastName might not be NULL")
-    @NotEmpty (message = "Empty lastName")
+    @NotNull(message = "lastName might not be NULL")
+    @NotEmpty(message = "Empty lastName")
     @Size(min = 1, max = 16, message = "Invalid lenght lastName")
     private String lastName;
 
-    @NotNull (message = "birthday might not be NULL")
-    @Past (message = "birthday must be in past")
+    @NotNull(message = "birthday might not be NULL")
+    @Past(message = "birthday must be in past")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthday;
 
-    @NotNull (message = "firstName might not be NULL")
-    @NotEmpty (message = "Empty firstName")
+    @NotNull(message = "firstName might not be NULL")
+    @NotEmpty(message = "Empty firstName")
     @Size(min = 1, max = 16, message = "Invalid lenght firstName")
     public String getFirstName() {
         return firstName;
@@ -76,9 +75,18 @@ public class Person {
         }
 
         public Person build() {
-            (new ValidateClass()).validate(person);
+ //           (new ValidateClass()).validate(person);
             return person;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthday=" + birthday +
+                '}';
     }
 }
 

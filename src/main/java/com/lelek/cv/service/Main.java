@@ -1,19 +1,13 @@
 package com.lelek.cv.service;
 
-import com.lelek.cv.DAO.DBQuery;
-import com.lelek.cv.DAO.FindCvListOfQueriesCreator;
 import com.lelek.cv.model.CV;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 //Create WEB
 //Create Client-server
-// Patterns
-//out List of CV
-//in List of CV
+//Patterns
 
 public class Main {
 
@@ -21,19 +15,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
-        CVRedactorFacade facade = new CVRedactorFacade(file);
+ //       CvFacade facade = new CvFacade();
 
-//        facade.writeCVInDatabase();
-
+//        facade.writeCvInTable(facade.getCvFromFile("cv.json"));
+//        facade.writeCvInFile(facade.readCvFromTable(1));
 
 //        facade.clearAllTables();
-
-        List<CV> cvList = (new DBQuery()).readCVFromTable((new FindCvListOfQueriesCreator()).getAllFromTable());
-        for (CV cv : cvList){
-            System.out.println(cv.getPerson().getFirstName());
-            System.out.println(cv.getPerson().getBirthday());
-        }
-
 
 
     }

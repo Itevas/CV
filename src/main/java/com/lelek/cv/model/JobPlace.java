@@ -33,8 +33,6 @@ public class JobPlace {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate to;
 
-    private static boolean currentJob;
-
     @NotNull
     private Position position;
 
@@ -59,12 +57,9 @@ public class JobPlace {
     }
 
     public LocalDate getTo() {
-        if (currentJob) {
-            return to = LocalDate.now();
-        } else {
             return to;
-        }
     }
+
     public static class JobPlaceBuilder{
 
         private JobPlace jobPlace;
@@ -94,11 +89,6 @@ public class JobPlace {
         }
 
         public JobPlaceBuilder setTo(LocalDate to) {
-            if (to.equals(LocalDate.now())) {
-                currentJob = true;
-            } else {
-                currentJob = false;
-            }
             jobPlace.to = to;
             return this;
         }

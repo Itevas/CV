@@ -1,9 +1,9 @@
-package com.lelek.cv.DAO;
+package com.lelek.cv.dao;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class ClearListOfQueriesCreator {
+public class ClearListOfQueries {
 
     private final String CLEAR_CONTACT = "DELETE FROM contact;";
     private final String CLEAR_JOBPLACE = "DELETE FROM jobplace;";

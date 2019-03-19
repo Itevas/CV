@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'war'
+ 
 }
 
 version '1.0-SNAPSHOT'
@@ -23,5 +25,7 @@ dependencies {
     compile group: 'javax.el', name: 'javax.el-api', version: '3.0.1-b06'
     compile group: 'org.glassfish.web', name: 'el-impl', version: '2.2.1-b05'
     compile group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
-
+    compile group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '7.0.28'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+    
 }
