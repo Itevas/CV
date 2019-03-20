@@ -76,6 +76,7 @@ public class Person {
 
         public Person build() {
             (new ValidateClass()).validate(person);
+            System.out.println("BUILDER");
             return person;
         }
     }

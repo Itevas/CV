@@ -1,9 +1,6 @@
 package com.lelek.cv.webapp;
 
 import com.lelek.cv.model.CV;
-import com.lelek.cv.model.Contact;
-import com.lelek.cv.model.JobPlace;
-import com.lelek.cv.model.Person;
 import com.lelek.cv.service.CvFacade;
 
 import javax.servlet.ServletException;
@@ -16,13 +13,12 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 
-@WebServlet(urlPatterns = "/")
+@WebServlet(urlPatterns = "/cv")
 public class CvServlet extends HttpServlet {
 
     private CV cv;
 
     @Override
-
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         try {
@@ -67,8 +63,6 @@ public class CvServlet extends HttpServlet {
             }
 
         }
-
-
         request.getRequestDispatcher("/WEB-INF/response.jsp").forward(request, response);
     }
 }

@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
         CvFacade facade = new CvFacade();
+        facade.getCvFromFile("cv.yml");
 //        facade.writeCvInTable(facade.getCvFromFile("cv2.txt"));
 //        facade.writeCvInTable(facade.getCvFromFile("cv.txt"));
 
