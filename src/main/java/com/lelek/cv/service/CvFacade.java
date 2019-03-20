@@ -28,7 +28,8 @@ public class CvFacade {
         (new DBQuery()).clearTable();
     }
 
-    public static CV readCvFromTable(int cvId) throws SQLException, ClassNotFoundException {
-        return ((new DBQuery()).readCVFromTable(cvId));
+    public CV readCvFromTable(int cvId) throws SQLException, ClassNotFoundException {
+
+        return new DBQuery().readCVFromTable(cvId);
     }
 }

@@ -1,6 +1,5 @@
 package com.lelek.cv.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lelek.cv.model.CV;
 import com.lelek.cv.model.Contact;
 import com.lelek.cv.model.JobPlace;
@@ -60,11 +59,11 @@ public class TxtMapper {
                 map.put(line, (scanTxt.next().trim()));
 
                 jobPlaces.add((new JobPlace.JobPlaceBuilder())
-                        .setCity(map.get("city").toString())
-                        .setCompany(map.get("company").toString())
-                        .setPosition(map.get("position").toString())
-                        .setFrom((LocalDate) map.get("from"))
-                        .setTo((LocalDate) map.get("to"))
+                        .city(map.get("city").toString())
+                        .company(map.get("company").toString())
+                        .position(map.get("position").toString())
+                        .from((LocalDate) map.get("from"))
+                        .to((LocalDate) map.get("to"))
                         .build());
             }
         }
@@ -72,14 +71,14 @@ public class TxtMapper {
 
         cv.setJobPlaces(jobPlaces);
         cv.setContact(new Contact.ContactBuilder()
-                .setPhoneNumber(map.get("phoneNumber").toString())
-                .setAddress(map.get("address").toString())
-                .seteMail(map.get("eMail").toString())
+                .phoneNumber(map.get("phoneNumber").toString())
+                .address(map.get("address").toString())
+                .eMail(map.get("eMail").toString())
                 .build());
         cv.setPerson(new Person.PersonBuilder()
-                .setFirstName(map.get("firstName").toString())
-                .setLastName(map.get("lastName").toString())
-                .setBirthday((LocalDate) map.get("birthday"))
+                .firstName(map.get("firstName").toString())
+                .lastName(map.get("lastName").toString())
+                .birthday((LocalDate) map.get("birthday"))
                 .build());
         return cv;
     }

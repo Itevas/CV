@@ -17,10 +17,8 @@ public class JobPlace {
 
     private JobPlace(){}
 
-    @NotNull
     private String company;
 
-    @NotNull
     private String city;
 
     @Past
@@ -33,7 +31,6 @@ public class JobPlace {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate to;
 
-    @NotNull
     private Position position;
 
     public enum Position {
@@ -68,33 +65,33 @@ public class JobPlace {
             jobPlace = new JobPlace();
         }
 
-        public JobPlaceBuilder setCompany(String company) {
+        public JobPlaceBuilder company(String company) {
             jobPlace.company = company;
             return this;
         }
 
-        public JobPlaceBuilder  setCity(String city) {
+        public JobPlaceBuilder city(String city) {
             jobPlace.city = city;
             return this;
         }
 
-        public JobPlaceBuilder  setPosition(String position) {
+        public JobPlaceBuilder position(String position) {
             jobPlace.position = Position.valueOf(position);
             return this;
         }
 
-        public JobPlaceBuilder setFrom(LocalDate from) {
+        public JobPlaceBuilder from(LocalDate from) {
             jobPlace.from = from;
             return this;
         }
 
-        public JobPlaceBuilder setTo(LocalDate to) {
+        public JobPlaceBuilder to(LocalDate to) {
             jobPlace.to = to;
             return this;
         }
 
         public JobPlace build(){
-            (new ValidateClass()).validate(jobPlace);
+            new ValidateClass().validate(jobPlace);
             return jobPlace;
         }
     }

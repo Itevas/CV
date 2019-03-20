@@ -40,17 +40,17 @@ public class Contact {
             contact = new Contact();
         }
 
-        public ContactBuilder setPhoneNumber(String phoneNumber) {
+        public ContactBuilder phoneNumber(String phoneNumber) {
             contact.phoneNumber = phoneNumber;
             return this;
         }
 
-        public ContactBuilder setAddress(String address) {
+        public ContactBuilder address(String address) {
             contact.address = address;
             return this;
         }
 
-        public ContactBuilder seteMail(String eMail) {
+        public ContactBuilder eMail(String eMail) {
             contact.eMail = eMail;
             return this;
         }

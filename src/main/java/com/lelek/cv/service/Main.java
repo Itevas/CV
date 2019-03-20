@@ -11,13 +11,12 @@ import java.sql.SQLException;
 
 public class Main {
 
-    private static final String file = "cv.txt";
-
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
- //       CvFacade facade = new CvFacade();
+        CvFacade facade = new CvFacade();
+//        facade.writeCvInTable(facade.getCvFromFile("cv2.txt"));
+//        facade.writeCvInTable(facade.getCvFromFile("cv.txt"));
 
-//        facade.writeCvInTable(facade.getCvFromFile("cv.json"));
 //        facade.writeCvInFile(facade.readCvFromTable(1));
 
 //        facade.clearAllTables();

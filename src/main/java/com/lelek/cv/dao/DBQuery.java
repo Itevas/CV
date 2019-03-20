@@ -15,10 +15,10 @@ public class DBQuery {
 
     private Connection connect;
 
-    public DBQuery() throws ClassNotFoundException {
+    public DBQuery() {
         try {
             this.connect = DBConnection.getInstance().getConnection();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -66,21 +66,21 @@ public class DBQuery {
                 cvMap.put(metaData.getColumnName(i), resultSet.getObject(i));
             }
             jobPlaces.add((new JobPlace.JobPlaceBuilder())
-                    .setCity(cvMap.get("city").toString())
-                    .setCompany(cvMap.get("company").toString())
-                    .setFrom(LocalDate.parse((cvMap.get("from")).toString()))
-                    .setTo(LocalDate.parse((cvMap.get("to")).toString()))
-                    .setPosition(cvMap.get("position").toString())
+                    .city(cvMap.get("city").toString())
+                    .company(cvMap.get("company").toString())
+                    .from(LocalDate.parse((cvMap.get("from")).toString()))
+                    .to(LocalDate.parse((cvMap.get("to")).toString()))
+                    .position(cvMap.get("position").toString())
                     .build());
             cv.setContact(new Contact.ContactBuilder()
-                    .setPhoneNumber(cvMap.get("phonenumber").toString())
-                    .setAddress(cvMap.get("address").toString())
-                    .seteMail(cvMap.get("eMail").toString())
+                    .phoneNumber(cvMap.get("phonenumber").toString())
+                    .address(cvMap.get("address").toString())
+                    .eMail(cvMap.get("eMail").toString())
                     .build());
             cv.setPerson(new Person.PersonBuilder()
-                    .setFirstName(cvMap.get("firstname").toString())
-                    .setLastName(cvMap.get("lastname").toString())
-                    .setBirthday(LocalDate.parse((cvMap.get("birthday")).toString()))
+                    .firstName(cvMap.get("firstname").toString())
+                    .lastName(cvMap.get("lastname").toString())
+                    .birthday(LocalDate.parse((cvMap.get("birthday")).toString()))
                     .build());
         }
         cv.setJobPlaces(jobPlaces);

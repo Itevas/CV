@@ -1,0 +1,22 @@
+
+firstName : Chad:
+lastName : Cage:
+birthday : 12.03.1977:
+
+phoneNumber : 0633562329:
+address : Independence str, Chicago, USA:
+eMail : CageC@gmail.com:
+
+company : IBN Corp.:
+city : Chicago:
+from : 01.05.1996:
+to : 01.08.2003:
+position : Developer:
+
+company : Sun Industry:
+city : LA:
+from : 01.10.2005:
+to : 01.05.2016:
+position : Developer:
+
+

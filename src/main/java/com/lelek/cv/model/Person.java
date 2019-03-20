@@ -59,23 +59,23 @@ public class Person {
             person = new Person();
         }
 
-        public PersonBuilder setFirstName(String firstName) {
+        public PersonBuilder firstName(String firstName) {
             person.firstName = firstName;
             return this;
         }
 
-        public PersonBuilder setLastName(String lastName) {
+        public PersonBuilder lastName(String lastName) {
             person.lastName = lastName;
             return this;
         }
 
-        public PersonBuilder setBirthday(LocalDate birthday) {
+        public PersonBuilder birthday(LocalDate birthday) {
             person.birthday = birthday;
             return this;
         }
 
         public Person build() {
- //           (new ValidateClass()).validate(person);
+            (new ValidateClass()).validate(person);
             return person;
         }
     }
