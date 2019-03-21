@@ -1,0 +1,10 @@
+---
+person:
+  firstName: "Vasyl"
+  lastName: "Lelek"
+  birthday: "26.07.1985"
+contact:
+  phoneNumber: "0953982280"
+  address: "Ukraine"
+  eMail: "itevas@ukr.net"
+jobPlaces: []

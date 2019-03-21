@@ -9,33 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 
 @WebServlet(urlPatterns = "/cv")
 public class CvServlet extends HttpServlet {
 
+    private final String PATH = "C:\\Users\\vleletc\\IdeaProjects\\cv\\src\\main\\resources\\";
     private CV cv;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private String getAge() {
+        return String.valueOf(Period.between(cv.getPerson().getBirthday(), LocalDate.now()).getYears());
+    }
 
-        try {
-            cv = new CvFacade().readCvFromTable(2);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        cv = new CvFacade().getCvFromFile(PATH + "temp.yml");
 
+        request.setAttribute("person", cv.getPerson());
+        request.setAttribute("contact", cv.getContact());
+        request.setAttribute("age", getAge() + " years old");
 
-        request.setAttribute("firstName", cv.getPerson().getFirstName());
-        request.setAttribute("lastName", cv.getPerson().getLastName());
-        request.setAttribute("birthday", cv.getPerson().getBirthday().toString());
-        request.setAttribute("phoneNumber", cv.getContact().getPhoneNumber());
-        request.setAttribute("address", cv.getContact().getAddress());
-        request.setAttribute("eMail", cv.getContact().geteMail());
-        request.setAttribute("age", Period.between(cv.getPerson().getBirthday(),
-                LocalDate.now()).getYears() + " years old");
         if (cv.getJobPlaces().size() == 0) {
             request.setAttribute("jobPlaces", "No experience.");
         } else if (cv.getJobPlaces().size() == 1) {
@@ -50,19 +43,18 @@ public class CvServlet extends HttpServlet {
             request.setAttribute("line0", "<hr>");
         } else if (cv.getJobPlaces().size() > 1) {
             request.setAttribute("jobPlaces", "Job Places:");
-            for( int i = 0; i <cv.getJobPlaces().size(); i++){
-                request.setAttribute("jobplaces"+i, "Job Place:");
-                request.setAttribute("company"+i, cv.getJobPlaces().get(i).getCompany());
-                request.setAttribute("city"+i, cv.getJobPlaces().get(i).getCity());
-                request.setAttribute("fromTxt"+i, "From:");
-                request.setAttribute("from"+i, cv.getJobPlaces().get(i).getFrom());
-                request.setAttribute("toTxt"+i, "To:");
-                request.setAttribute("to"+i, cv.getJobPlaces().get(i).getTo());
-                request.setAttribute("position"+i, cv.getJobPlaces().get(i).getPosition());
-                request.setAttribute("line"+i, "<hr>");
+            for (int i = 0; i < cv.getJobPlaces().size(); i++) {
+                request.setAttribute("jobplaces" + i, "Job Place:");
+                request.setAttribute("company" + i, cv.getJobPlaces().get(i).getCompany());
+                request.setAttribute("city" + i, cv.getJobPlaces().get(i).getCity());
+                request.setAttribute("fromTxt" + i, "From:");
+                request.setAttribute("from" + i, cv.getJobPlaces().get(i).getFrom());
+                request.setAttribute("toTxt" + i, "To:");
+                request.setAttribute("to" + i, cv.getJobPlaces().get(i).getTo());
+                request.setAttribute("position" + i, cv.getJobPlaces().get(i).getPosition());
+                request.setAttribute("line" + i, "<hr>");
             }
-
         }
-        request.getRequestDispatcher("/WEB-INF/response.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/preview.jsp").forward(request, response);
     }
 }

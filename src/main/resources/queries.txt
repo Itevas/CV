@@ -1,5 +1,0 @@
-INSERT INTO person VALUES (1, 'John', 'Golt', '26.07.1985');
-INSERT INTO cv VALUES (1,1);
-INSERT INTO contact Values (1, '0953982280', '6 Avenu, New York, USA', 'JohnGolt@gmail.com');
-INSERT INTO jobplace VALUES ('IMDB Tecnology', 'New York', '01.08.2015', '01.10.2018', 'QAEngineer', 1, 1);
-INSERT INTO jobplace VALUES ('Google LLC', 'New York', '01.11.2018', '01.04.2019', 'Developer', 2, 1);

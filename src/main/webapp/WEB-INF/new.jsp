@@ -6,19 +6,19 @@
 <body>
 <h1>Create new CV</h1><br>
 
-<form action="/action_page.php" target="_blank" method="get">
+<form action="/" method="post">
     First name:<br>
-    <input type="text" name="firstName"><br><br>
+    <input type="text" name="firstName" value="Vasyl"><br><br>
     Last name:<br>
-    <input type="text" name="lastName"><br><br>
+    <input type="text" name="lastName" value="Lelek"><br><br>
     Birthday:<br>
-    <input type="date" name="birthday"><br><br><hr><br>
+    <input type="date" name="birthday" value="1985-07-26"><br><br><hr><br>
     Phone Number:<br>
-    <input type="tel" name="phoneNumber"><br><br>
+    <input type="tel" name="phoneNumber" value="0953982280"><br><br>
     Address:<br>
-    <input type="text" name="address"><br><br>
+    <input type="text" name="address" value="Ukraine"><br><br>
     E-mail:<br>
-    <input type="email" name="eMail"><br><br><hr><br>
+    <input type="email" name="eMail" value="itevas@ukr.net"><br><br><hr><br>
     Job Place<br><br>
     Company:<br>
     <input type="text" name="company"><br><br>

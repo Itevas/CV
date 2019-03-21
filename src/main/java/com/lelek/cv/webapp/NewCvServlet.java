@@ -3,6 +3,7 @@ package com.lelek.cv.webapp;
 import com.lelek.cv.model.CV;
 import com.lelek.cv.model.Contact;
 import com.lelek.cv.model.Person;
+import com.lelek.cv.service.CvFacade;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,31 +15,33 @@ import java.time.LocalDate;
 
 @WebServlet(urlPatterns = "/")
 public class NewCvServlet extends HttpServlet {
+    private final String PATH = "C:\\Users\\vleletc\\IdeaProjects\\cv\\src\\main\\resources\\temp.yml";
+
+    private CV cv;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
         request.getRequestDispatcher("/WEB-INF/new.jsp").forward(request, response);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-
-        CV cv = new CV();
+        cv = new CV();
         Person person = new Person.PersonBuilder()
-                .firstName(request.getAttribute("firstName").toString())
-                .lastName(request.getAttribute("lastName").toString())
-                .birthday(LocalDate.parse(request.getAttribute("birthday").toString()))
+                .firstName(request.getParameter("firstName"))
+                .lastName(request.getParameter("lastName"))
+                .birthday(LocalDate.parse(request.getParameter("birthday")))
                 .build();
         Contact contact = new Contact.ContactBuilder()
-                .phoneNumber(request.getAttribute("phoneNumber").toString())
-                .address(request.getAttribute("address").toString())
-                .eMail(request.getAttribute("eMail").toString())
+                .phoneNumber(request.getParameter("phoneNumber"))
+                .address(request.getParameter("address"))
+                .eMail(request.getParameter("eMail"))
                 .build();
+// Add list of Job Places if not empty
+//cv.setJobPlaces();
         cv.setPerson(person);
         cv.setContact(contact);
-
-        request.getRequestDispatcher("/WEB-INF/response.jsp").forward(request, response);
-
+        new CvFacade().writeCvInFile(PATH, cv);
+        new CvServlet().doPost(request, response);
     }
 }

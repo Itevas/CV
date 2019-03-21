@@ -13,12 +13,9 @@ import java.util.Scanner;
 
 public class ReadFrom {
 
-    private static final String PATH = "src/main/resources/";
-
     public CV readFile(String fileName) throws IOException {
-        fileName = PATH + fileName;
-        Scanner scanFile = new Scanner(new File(fileName));
 
+        Scanner scanFile = new Scanner(new File(fileName));
         while (scanFile.hasNextLine()) {
             String line = scanFile.nextLine();
             if (line != null) {
