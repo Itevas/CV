@@ -5,46 +5,46 @@
     <title>CV</title>
 </head>
 <body>
-<div>
+
+    <div>
 <h1>${person.firstName} ${person.lastName}</h1>
 <h4>${person.birthday} (${age})</h4>
-</div>
+    </div>
 
-<div>
+    <div>
 <h3>Contacts:</h3>
 <p>${contact.phoneNumber}
 <p>${contact.address}
-<p>${contact.eMail}
-</p>
+    <p>${contact.eMail}
+    </div>
 
-<div>
+    <div>
 <h3>${jobPlaces}</h3>
+<p>${jobPlace2.company2}
+<p>${jobPlace2.city2}
+<p>${fromTxt2} ${jobPlace2.from2}
+<p>${toTxt2} ${jobPlace2.to2}
+${jobPlace2.position2}
+    </div>
 
-<p>${company2}
-<p>${city2}
-<p>${fromTxt2} ${from2}
-<p>${toTxt2} ${to2}
-<div>${position2}
-</div>
-    ${line2}
+    <div>
+<p>${jobPlace1.company1}
+<p>${jobPlace1.city1}
+<p>${fromTxt1} ${jobPlace1.from1}
+<p>${toTxt1} ${jobPlace1.to1}
+<p>${jobPlace1.position1}
+    </div>
 
-<p>${company1}
-<p>${city1}
-<p>${fromTxt1} ${from1}
-<p>${toTxt1} ${to1}
-<p>${position1}
+    <div>
+<p>${jobPlace0.company0}
+<p>${jobPlace0.city0}
+<p>${fromTxt0} ${jobPlace0.from0}
+<p>${toTxt0} ${jobPlace0.to0}
+<p>${jobPlace0.position0}
+        </div>
 
-    ${line1}
-
-<p>${company0}
-<p>${city0}
-<p>${fromTxt0} ${from0}
-<p>${toTxt0} ${to0}
-<p>${position0}
-
-${line0}
     <%
-        CvFacade facade = new CvFacade();
+        CvFacade facade = new CvFacade(); //need to call Servlet with response "Added successfully"
     %>
     <button onclick="window.location.href = '/'">Edit CV</button>
     <button onclick="<%facade.writeCvInTableFromTmpFile();%>">Submit CV</button>

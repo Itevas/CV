@@ -15,7 +15,7 @@ import java.time.LocalDate;
 
 @WebServlet(urlPatterns = "/")
 public class NewCvServlet extends HttpServlet {
-    private final String PATH = "C:\\Users\\vleletc\\IdeaProjects\\cv\\src\\main\\resources\\temp.yml";
+    private final String PATH = "C:/Users/vleletc/IdeaProjects/cv/src/main/resources/temp.yml";
 
     private CV cv;
 

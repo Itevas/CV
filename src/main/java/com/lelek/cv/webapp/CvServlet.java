@@ -15,7 +15,7 @@ import java.time.Period;
 @WebServlet(urlPatterns = "/cv")
 public class CvServlet extends HttpServlet {
 
-    private final String PATH = "C:\\Users\\vleletc\\IdeaProjects\\cv\\src\\main\\resources\\";
+    private final String PATH = "C:/Users/vleletc/IdeaProjects/cv/src/main/resources/";
     private CV cv;
 
     private String getAge() {
@@ -33,26 +33,16 @@ public class CvServlet extends HttpServlet {
             request.setAttribute("jobPlaces", "No experience.");
         } else if (cv.getJobPlaces().size() == 1) {
             request.setAttribute("jobPlaces", "Job Place:");
-            request.setAttribute("company", cv.getJobPlaces().get(1).getCompany());
-            request.setAttribute("city", cv.getJobPlaces().get(1).getCity());
+            request.setAttribute("jobPlace", cv.getJobPlaces().get(1));
             request.setAttribute("fromTxt", "From:");
-            request.setAttribute("from", cv.getJobPlaces().get(1).getFrom());
             request.setAttribute("toTxt", "To:");
-            request.setAttribute("to", cv.getJobPlaces().get(1).getTo());
-            request.setAttribute("position", cv.getJobPlaces().get(1).getPosition());
-            request.setAttribute("line0", "<hr>");
         } else if (cv.getJobPlaces().size() > 1) {
             request.setAttribute("jobPlaces", "Job Places:");
             for (int i = 0; i < cv.getJobPlaces().size(); i++) {
                 request.setAttribute("jobplaces" + i, "Job Place:");
-                request.setAttribute("company" + i, cv.getJobPlaces().get(i).getCompany());
-                request.setAttribute("city" + i, cv.getJobPlaces().get(i).getCity());
+                request.setAttribute("jobPlace" + i, cv.getJobPlaces().get(i));
                 request.setAttribute("fromTxt" + i, "From:");
-                request.setAttribute("from" + i, cv.getJobPlaces().get(i).getFrom());
                 request.setAttribute("toTxt" + i, "To:");
-                request.setAttribute("to" + i, cv.getJobPlaces().get(i).getTo());
-                request.setAttribute("position" + i, cv.getJobPlaces().get(i).getPosition());
-                request.setAttribute("line" + i, "<hr>");
             }
         }
         request.getRequestDispatcher("/WEB-INF/preview.jsp").forward(request, response);
