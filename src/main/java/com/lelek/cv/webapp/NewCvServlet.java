@@ -2,6 +2,7 @@ package com.lelek.cv.webapp;
 
 import com.lelek.cv.model.CV;
 import com.lelek.cv.model.Contact;
+import com.lelek.cv.model.JobPlace;
 import com.lelek.cv.model.Person;
 import com.lelek.cv.service.CvFacade;
 
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/")
 public class NewCvServlet extends HttpServlet {
@@ -27,20 +30,31 @@ public class NewCvServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         cv = new CV();
-        Person person = new Person.PersonBuilder()
+        List<JobPlace> jobPlaces = new ArrayList<>();
+        cv.setPerson(new Person.PersonBuilder()
                 .firstName(request.getParameter("firstName"))
                 .lastName(request.getParameter("lastName"))
                 .birthday(LocalDate.parse(request.getParameter("birthday")))
-                .build();
-        Contact contact = new Contact.ContactBuilder()
+                .build());
+        cv.setContact(new Contact.ContactBuilder()
                 .phoneNumber(request.getParameter("phoneNumber"))
                 .address(request.getParameter("address"))
                 .eMail(request.getParameter("eMail"))
-                .build();
+                .build());
+        jobPlaces.add( new JobPlace.JobPlaceBuilder()
+                .company(request.getParameter("company"))
+                .city(request.getParameter("city"))
+                .from(LocalDate.parse(request.getParameter("from")))
+                .to(LocalDate.parse(request.getParameter("to")))
+                .position(request.getParameter("position"))
+                .build());
+        cv.setJobPlaces(jobPlaces);
+
+
+
+
 // Add list of Job Places if not empty
 //cv.setJobPlaces();
-        cv.setPerson(person);
-        cv.setContact(contact);
         new CvFacade().writeCvInFile(PATH, cv);
         new CvServlet().doPost(request, response);
     }

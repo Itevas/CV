@@ -24,26 +24,23 @@ public class CvServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        cv = new CvFacade().getCvFromFile(PATH + "temp.yml");
+        cv = new CvFacade().getCvFromFile(PATH + "cv.yml");
 
-        request.setAttribute("person", cv.getPerson());
-        request.setAttribute("contact", cv.getContact());
+        request.setAttribute("cv", cv);
         request.setAttribute("age", getAge() + " years old");
 
         if (cv.getJobPlaces().size() == 0) {
             request.setAttribute("jobPlaces", "No experience.");
         } else if (cv.getJobPlaces().size() == 1) {
             request.setAttribute("jobPlaces", "Job Place:");
-            request.setAttribute("jobPlace", cv.getJobPlaces().get(1));
             request.setAttribute("fromTxt", "From:");
             request.setAttribute("toTxt", "To:");
         } else if (cv.getJobPlaces().size() > 1) {
             request.setAttribute("jobPlaces", "Job Places:");
             for (int i = 0; i < cv.getJobPlaces().size(); i++) {
-                request.setAttribute("jobplaces" + i, "Job Place:");
-                request.setAttribute("jobPlace" + i, cv.getJobPlaces().get(i));
-                request.setAttribute("fromTxt" + i, "From:");
-                request.setAttribute("toTxt" + i, "To:");
+                request.setAttribute("jobplaces", "Job Place:");
+                request.setAttribute("fromTxt", "From:");
+                request.setAttribute("toTxt", "To:");
             }
         }
         request.getRequestDispatcher("/WEB-INF/preview.jsp").forward(request, response);
