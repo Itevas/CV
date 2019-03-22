@@ -13,11 +13,11 @@ public class WriterInFileTest {
     @Test
     public void testWriteInYmlFile() throws IOException {
         WriterInFile writerInFile = new WriterInFile();
-        CV cv = (new ReadFrom().readFile("src/main/resources/cv.json"));
-        writerInFile.writeInYmlFile(cv);
-        CV cv1 = (new ReadFrom().readFile("src/main/resources/out.yml"));
+        CV expectedCv = (new ReadFrom().readFile("src/main/resources/cv.json"));
+        writerInFile.writeInYmlFile(expectedCv);
+        CV actualCv = (new ReadFrom().readFile("src/main/resources/out.yml"));
 
-        Assert.assertEquals(cv.toString(), cv1.toString());
+        Assert.assertEquals(expectedCv.toString(), actualCv.toString());
 
     }
 }

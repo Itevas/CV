@@ -1,4 +1,4 @@
-
+specText:
 firstName : Chad:
 lastName : Cage:
 birthday : 12.03.1977:

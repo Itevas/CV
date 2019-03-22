@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-
 public class ReadFrom {
 
     public CV readFile(String fileName) throws IOException {
@@ -33,10 +32,14 @@ public class ReadFrom {
                     } else if (line.charAt(i) == '-') {
 
                         return (new ObjectMapper(new YAMLFactory()).readValue(new File(fileName), CV.class));
-//Add can't parse file condition
-                    } else {
+
+                    } else if (line.contains("specText:")) {
 
                         return ((new TxtMapper(fileName)).readValue());
+
+                    } else {
+
+                        throw new FileNotValidException("Invalid markup in txt file");
 
                     }
                 }
