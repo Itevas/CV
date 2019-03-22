@@ -22,6 +22,7 @@ public class CvServlet extends HttpServlet {
         return String.valueOf(Period.between(cv.getPerson().getBirthday(), LocalDate.now()).getYears());
     }
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         cv = new CvFacade().getCvFromFile(PATH + "temp.yml");
 

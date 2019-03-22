@@ -31,6 +31,17 @@ public class JobPlace {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate to;
 
+    @Override
+    public String toString() {
+        return "JobPlace{" +
+                "company='" + company + '\'' +
+                ", city='" + city + '\'' +
+                ", from=" + from +
+                ", to=" + to +
+                ", position=" + position +
+                '}';
+    }
+
     private Position position;
 
     public enum Position {

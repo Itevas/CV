@@ -17,12 +17,14 @@ public class Main {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
         CvFacade facade = new CvFacade();
-        CV cv = facade.getCvFromFile("src/main/resources/cv.xml");
-        facade.writeCvInFile(PATH, cv);
-//        facade.writeCvInTable(facade.getCvFromFile("cv2.txt"));
-//        facade.writeCvInTable(facade.getCvFromFile("cv.txt"));
 
-//        facade.writeCvInFile(facade.readCvFromTable(1));
+//        facade.writeCvInFile(PATH, cv);
+//        facade.writeCvInTable(facade.getCvFromFile("src/main/resources/cv.txt"));
+//        facade.writeCvInTable(facade.getCvFromFile("src/main/resources/cv.txt"));
+
+//        for (int i = 0; i < 20; i++) {
+//            System.out.println(i + " " + facade.readCvFromTable(i));
+//        }
 
 //        facade.clearAllTables();
 

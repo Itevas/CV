@@ -32,6 +32,15 @@ public class Contact {
         return eMail;
     }
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", eMail='" + eMail + '\'' +
+                '}';
+    }
+
     public static class ContactBuilder{
 
         private Contact contact;

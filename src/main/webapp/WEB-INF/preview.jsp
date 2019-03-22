@@ -46,7 +46,7 @@ ${jobPlace2.position2}
     <%
         CvFacade facade = new CvFacade(); //need to call Servlet with response "Added successfully"
     %>
-    <button onclick="window.location.href = '/'">Edit CV</button>
+    <button class="preview" onclick="window.location.href = '/'">Edit CV</button>
     <button onclick="<%facade.writeCvInTableFromTmpFile();%>">Submit CV</button>
 
 

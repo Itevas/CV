@@ -33,4 +33,13 @@ public class CV{
     public List<JobPlace> getJobPlaces() {
         return jobPlaces;
     }
+
+    @Override
+    public String toString() {
+        return "CV{" +
+                "person=" + person +
+                ", contact=" + contact +
+                ", jobPlaces=" + jobPlaces +
+                '}';
+    }
 }

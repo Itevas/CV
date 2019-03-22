@@ -1,18 +1,16 @@
 package com.lelek.cv.dao;
 
-public class FindCvListOfQueriesCreator {
+import java.util.LinkedList;
+import java.util.List;
+
+public class ListOfQueriesCreator {
+
+
 
     static String getAllFromTable() {
         return "SELECT * FROM person " +
                 "INNER JOIN contact USING (id) " +
                 "INNER JOIN jobplace USING (id);";
-    }
-
-    static String getByIdFromTable(int id) {
-        return "SELECT * FROM person " +
-                "INNER JOIN contact USING (id) " +
-                "INNER JOIN jobplace USING (id) " +
-                "WHERE id = " + id + ";";
     }
 
     static String getByFirstNameFromTable(String firstName) {
