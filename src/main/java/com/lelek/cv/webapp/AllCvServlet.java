@@ -29,10 +29,9 @@ public class AllCvServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-
-        for (CV cv : cvList) {
-            request.setAttribute("cv", cv);
-        }
+        CV cv = cvList.get(2);
+        request.setAttribute("cv", cv);
+// https://www.quora.com/How-do-I-display-a-list-of-objects-in-a-JSP-page-easily
         request.getRequestDispatcher("/WEB-INF/allcv.jsp").forward(request, response);
     }
 }
