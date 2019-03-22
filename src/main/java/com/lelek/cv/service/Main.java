@@ -6,9 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-//Create WEB
-//Create Client-server
-//Patterns
+//Create UI
+//Navigate in Servlets
+//Create War and launch from console
 
 public class Main {
 

@@ -5,6 +5,7 @@ import com.lelek.cv.model.CV;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class CvFacade {
 
@@ -36,6 +37,10 @@ public class CvFacade {
     }
 
     public CV readCvFromTable(int cvId) throws SQLException, ClassNotFoundException {
-        return new DBQuery().readCVFromTable(cvId);
+        return new DBQuery().readCvFromTable(cvId);
+    }
+
+    public List<CV> readAllCvFromTable() throws SQLException, ClassNotFoundException{
+        return new DBQuery().readAllCvFromTable();
     }
 }

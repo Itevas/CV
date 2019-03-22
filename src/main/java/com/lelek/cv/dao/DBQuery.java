@@ -31,9 +31,18 @@ public class DBQuery {
 
     private final int INDEX = 1;
     private int cvNumber, jobPlaceNumber;
+    private Connection connect;
+
+    public DBQuery(){
+        try {
+            Connection connect = DBConnection.getInstance().getConnection();
+            this.connect = connect;
+        } catch (ClassNotFoundException | SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     public void clearTable() throws SQLException, ClassNotFoundException {
-        Connection connect = DBConnection.getInstance().getConnection();
         List<String> queries = new LinkedList<>();
         queries.add(CLEAR_CONTACT);
         queries.add(CLEAR_JOBPLACE);
@@ -45,8 +54,6 @@ public class DBQuery {
     }
 
     public void writeCvInTable(CV cv) throws SQLException, ClassNotFoundException {
-
-        Connection connect = DBConnection.getInstance().getConnection();
         Statement statementR1 = connect.createStatement();
         ResultSet cvNumberResult = statementR1.executeQuery(GET_CV_NUMBER);
         while (cvNumberResult.next()) {
@@ -90,8 +97,20 @@ public class DBQuery {
         }
     }
 
-    public CV readCVFromTable(int cvId) throws SQLException, ClassNotFoundException {
-        Connection connect = DBConnection.getInstance().getConnection();
+    public List<CV> readAllCvFromTable() throws SQLException, ClassNotFoundException{
+        List<CV> cvList = new ArrayList<>();
+        Statement readStatement = connect.createStatement();
+        ResultSet cvNumberResult = readStatement.executeQuery(GET_CV_NUMBER);
+        while (cvNumberResult.next()) {
+            cvNumber = cvNumberResult.getInt(INDEX);
+        }
+        for (int i = 1; i<= cvNumber; i++){
+            cvList.add(readCvFromTable(i));
+        }
+        return cvList;
+    }
+
+    public CV readCvFromTable(int cvId) throws SQLException, ClassNotFoundException {
         List<JobPlace> jobPlaces = new ArrayList<>();
         Map<String, Object> cvMap = new HashMap<>();
         CV cv = new CV();

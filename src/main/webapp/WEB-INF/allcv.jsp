@@ -5,7 +5,8 @@
 </head>
 <body>
 <div>
-
+    <h1>List of candidates</h1>
+    <p> ${cv}
 </div>
 </body>
 </html>
