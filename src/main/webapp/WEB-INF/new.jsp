@@ -74,5 +74,7 @@ else if (job_place2.hidden) {job_place2.hidden=false}
 else if (job_place3.hidden) {job_place3.hidden=false; jp_button.hide()}
 ">Add job place</button><br><br>
 
+<%//<td><a class="btn btn-info" href="${pageContext.request.contextPath}/person_info?personId=${person.id}" role="button">Full resume</a></td>%>
+
 </body>
 </html>
