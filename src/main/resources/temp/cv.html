@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<head>
+    <title>New CV</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="cv.css">
+</head>
+<body>
+
+<div class="sidenav">
+  <t class="headingtext">Create CV</t><br>
+  <t class="simpletext">fill the form:<t><br>
+  
+  <form class="form" action="/" method="post">
+ 
+    <input type="text" name="firstName" placeholder="First name"><br><br>
+    <input type="text" name="lastName" placeholder="Last name"><br><br>
+	<t class="simpletext">Birthday:</t>
+    <input type="date" name="birthday" placeholder="Birthday"><br><br>
+	
+   
+    <input type="tel" name="phoneNumber" placeholder="phone"><br><br>
+    <input type="text" name="address" placeholder="address (street, city, country)"><br><br>
+    <input type="email" name="eMail" placeholder="e-mail"><br><br>
+
+    <div id="job_place" hidden="hidden">
+    Job Place<br><br>
+    Company:
+    <input type="text" name="company"><br><br>
+    City:
+    <input type="text" name="city"><br><br>
+    From:
+    <input type="date" name="from"><br><br>
+    To:
+    <input type="date" name="to"><br><br>
+    Position:
+    <input type="text" name="position"><br><br>
+    </div>
+
+    <div id="job_place2" hidden="hidden">
+        Job Place<br><br>
+        Company:
+        <input type="text" name="company2"><br><br>
+        City:
+        <input type="text" name="city2"><br><br>
+        From:
+        <input type="date" name="from2"><br><br>
+        To:
+        <input type="date" name="to2"><br><br>
+        Position:
+        <input type="text" name="position2"><br><br>
+    </div>
+
+    <div id="job_place3" hidden="hidden">
+        Job Place<br><br>
+        Company:
+        <input type="text" name="company3"><br><br>
+        City:
+        <input type="text" name="city3"><br><br>
+        From:
+        <input type="date" name="from3"><br><br>
+        To:
+        <input type="date" name="to3"><br><br>
+        Position:
+        <input type="text" name="position3"><br><br>
+    </div>
+
+
+    <input type="submit" value="Preview">
+
+</form>
+</div>
+
+
+<div class="main" align="center">
+
+	<div class="card">
+	<div class="row">
+			<div class="column">
+				<img src="homer.png" class="avatar" style="width: 50%" align="left">
+			</div>
+			<div class="column">
+				<h2><b>Homer Simpson</b></h2> 
+				<p>53 years old</p>
+									firstName : Homer Jay<br>
+									lastName : Simpson<br>
+									birthday : 03.05.1955<br>
+
+									phoneNumber : 0503442910<br>
+									address : 744 Evergreen Terrace, Springfield, USA<br>
+									eMail : HomerSimp@gmail.com<br>
+
+									company : Springfield Power Company<br>
+									city : Springfield<br>
+									from : 01.08.1977<br>
+									to : 01.05.2000<br>
+									position : QAEngineer<br>
+
+									company : Boogle LLC<br>
+									city : Springfield<br>
+									from : 01.09.2000<br>
+									to : 01.03.2009<br>
+									position : Developer<br>
+
+									company : Duff Solutions<br>
+									city : Springfield<br>
+									from : 01.11.2010<br>
+									to : This time<br>
+									position : Developer<br>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+</body>
+</html>

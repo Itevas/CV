@@ -1,0 +1,99 @@
+.sidenav {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #00a098;
+  overflow-x: hidden;
+  padding-top: 20px;
+  font-family: Arial;
+}
+
+.sidenav .list {
+	margin-left: 80px;
+	background-color: #1f827c;
+}
+
+.sidenav .list  a{
+	font-size: 17px;
+	color: #d5e2e2;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #fcfcfc;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #c9c9c9;
+}
+
+.sidenav .search-container{
+	float: left;
+	margin-bottom: 20px;
+	margin-left: 16px;
+}
+
+.sidenav  input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.sidenav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+sidenav .search-container button:hover {
+  background: #ccc;
+}
+
+.main {
+  margin-left: 300px;
+  padding: 0px 10px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  background-color: #e2fcff;
+  padding 16px;
+  margin-top: 16px;
+  font-family: Arial;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  background-color: #99f4ff;
+}
+
+.column {
+  float: left;
+  width: 33%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.avatar {
+	padding: 16px;
+}
+
+
+
