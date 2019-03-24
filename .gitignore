@@ -24,6 +24,7 @@ out/
 ##########################
 .idea/**/gradle.xml
 .idea/**/libraries
+.gradle/
 
 
 
