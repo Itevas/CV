@@ -8,7 +8,6 @@
   background-color: #00a098;
   overflow-x: hidden;
   padding-top: 20px;
-  font-family: Arial;
 }
 
 .sidenav .list {
@@ -63,16 +62,15 @@ sidenav .search-container button:hover {
 
 .main {
   margin-left: 300px;
-  padding: 0px 10px;
+  padding: 10px;
 }
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   background-color: #e2fcff;
-  padding 16px;
+  padding: 16px;
   margin-top: 16px;
-  font-family: Arial;
 }
 
 .card:hover {

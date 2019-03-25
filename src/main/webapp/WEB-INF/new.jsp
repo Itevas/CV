@@ -1,78 +1,98 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>New CV</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+        .sidenav {
+            height: 100%;
+            width: 400px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #004cff;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidenav  input{
+            float: left;
+            padding: 6px;
+            margin-bottom: 12px;
+            margin-left: 16px;
+            font-size: 17px;
+            border: none;
+            width: 85%;
+        }
+
+        .sidenav .simpletext{
+            color: #fcfcfc;
+            font-size: 20px;
+            margin-left: 16px;
+        }
+
+        .sidenav .headingtext{
+            color: #fcfcfc;
+            font-size: 27px;
+            margin-left: 16px;
+        }
+
+        .main {
+            margin-left: 400px;
+            padding: 10px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            background-color: #e2fcff;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .column {
+            float: left;
+            width: 33%;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .avatar {
+            padding: 16px;
+        }
+
+    </style>
 </head>
 <body>
-<h1>Create new CV</h1><br>
 
-<form action="/" method="post">
-    First name:
-    <input type="text" name="firstName" value="Vasyl"><br><br>
-    Last name:
-    <input type="text" name="lastName" value="Lelek"><br><br>
-    Birthday:
-    <input type="date" name="birthday" value="1985-07-26"><br><br>
-    Phone Number:
-    <input type="tel" name="phoneNumber" value="0953982280"><br><br>
-    Address:
-    <input type="text" name="address" value="Ukraine"><br><br>
-    E-mail:
-    <input type="email" name="eMail" value="itevas@ukr.net"><br><br>
+<div class="sidenav">
+    <div class="headingtext">Create CV</div><br>
 
-    <div id="job_place" hidden="hidden">
-    Job Place<br><br>
-    Company:
-    <input type="text" name="company"><br><br>
-    City:
-    <input type="text" name="city"><br><br>
-    From:
-    <input type="date" name="from"><br><br>
-    To:
-    <input type="date" name="to"><br><br>
-    Position:
-    <input type="text" name="position"><br><br>
-    </div>
+    <div class="simpletext">fill the form:</div><br>
 
-    <div id="job_place2" hidden="hidden">
-        Job Place<br><br>
-        Company:
-        <input type="text" name="company2"><br><br>
-        City:
-        <input type="text" name="city2"><br><br>
-        From:
-        <input type="date" name="from2"><br><br>
-        To:
-        <input type="date" name="to2"><br><br>
-        Position:
-        <input type="text" name="position2"><br><br>
-    </div>
+    <form class="form" action="${pageContext.request.contextPath}/" method="post">
 
-    <div id="job_place3" hidden="hidden">
-        Job Place<br><br>
-        Company:
-        <input type="text" name="company3"><br><br>
-        City:
-        <input type="text" name="city3"><br><br>
-        From:
-        <input type="date" name="from3"><br><br>
-        To:
-        <input type="date" name="to3"><br><br>
-        Position:
-        <input type="text" name="position3"><br><br>
-    </div>
+        <input type="text" name="firstName" placeholder="First name"><br><br>
+        <input type="text" name="lastName" placeholder="Last name"><br><br>
+        <div class="simpletext">Birthday:</div>
+        <input type="date" name="birthday" placeholder="Birthday"><br><br>
+
+        <input type="tel" name="phoneNumber" placeholder="phone"><br><br>
+        <input type="text" name="address" placeholder="address (street, city, country)"><br><br>
+        <input type="email" name="eMail" placeholder="e-mail"><br><br>
 
 
-    <input type="submit" value="Preview">
+        <input type="submit" value="Preview">
 
-</form>
-
-<button id="jp_button"
-        onclick="
-if (job_place.hidden) {job_place.hidden=false}
-else if (job_place2.hidden) {job_place2.hidden=false}
-else if (job_place3.hidden) {job_place3.hidden=false; jp_button.hide()}
-">Add job place</button><br><br>
+    </form>
+</div>
 
 <%//<td><a class="btn btn-info" href="${pageContext.request.contextPath}/person_info?personId=${person.id}" role="button">Full resume</a></td>%>
 
