@@ -1,14 +1,28 @@
 package com.lelek.cv.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CV {
+public class Cv {
 
+    @JsonIgnore
     private int id;
+
     private Person person;
     private Contact contact;
     private List<JobPlace> jobPlaces = new ArrayList<>();
+    private List<Skill> skills = new ArrayList<>();
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public void setPerson(Person person) {
         this.person = person;
@@ -34,21 +48,22 @@ public class CV {
         return jobPlaces;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSkills(List<Skill> skills){
+        this.skills=skills;
     }
 
-    public int getId() {
-        return id;
+    public List<Skill> getSkills(){
+        return skills;
     }
 
     @Override
     public String toString() {
-        return "CV{" +
-                "person=" + person +
+        return "Cv{" +
+                "id=" + id +
+                ", person=" + person +
                 ", contact=" + contact +
-                ", id=" + id +
                 ", jobPlaces=" + jobPlaces +
+                ", skills=" + skills +
                 '}';
     }
 }

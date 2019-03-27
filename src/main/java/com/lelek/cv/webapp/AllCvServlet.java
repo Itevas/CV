@@ -1,7 +1,7 @@
 package com.lelek.cv.webapp;
 
 
-import com.lelek.cv.model.CV;
+import com.lelek.cv.model.Cv;
 import com.lelek.cv.service.CvFacade;
 
 import javax.servlet.ServletException;
@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/allcv")
 public class AllCvServlet extends HttpServlet {
 
-    List<CV> cvList;
+    List<Cv> cvList;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

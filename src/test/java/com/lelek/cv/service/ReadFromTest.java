@@ -1,6 +1,6 @@
 package com.lelek.cv.service;
 
-import com.lelek.cv.model.CV;
+import com.lelek.cv.model.Cv;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,7 +14,7 @@ public class ReadFromTest {
     @Test
     public void testReadFile() throws IOException {
         ReadFrom readFrom = new ReadFrom();
-        List<CV> cvList = new ArrayList<>();
+        List<Cv> cvList = new ArrayList<>();
         cvList.add(readFrom.readFile("src/main/resources/cv.json"));
         cvList.add(readFrom.readFile("src/main/resources/cv.yml"));
         cvList.add(readFrom.readFile("src/main/resources/cv.txt"));

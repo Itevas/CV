@@ -1,4 +1,4 @@
-package com.lelek.cv.service;
+package com.lelek.cv.service.mapper;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

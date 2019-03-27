@@ -24,3 +24,7 @@ city : Springfield:
 from : 01.11.2010:
 to : This time:
 position : Developer:
+
+skill : JavaScript:
+skill : HTML:
+skill : CSS:

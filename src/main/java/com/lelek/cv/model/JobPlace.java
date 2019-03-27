@@ -2,11 +2,10 @@ package com.lelek.cv.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.lelek.cv.service.LocalDateDeserializer;
-import com.lelek.cv.service.LocalDateSerializer;
+import com.lelek.cv.service.mapper.LocalDateDeserializer;
+import com.lelek.cv.service.mapper.LocalDateSerializer;
 import com.lelek.cv.service.ValidateClass;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
@@ -82,8 +81,8 @@ public class JobPlace {
             return this;
         }
 
-        public JobPlaceBuilder position(String position) {
-            jobPlace.position = Position.valueOf(position);
+        public JobPlaceBuilder position(Position position) {
+            jobPlace.position = position;
             return this;
         }
 

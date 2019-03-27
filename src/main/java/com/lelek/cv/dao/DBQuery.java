@@ -1,17 +1,13 @@
 package com.lelek.cv.dao;
 
-import com.lelek.cv.model.CV;
-import com.lelek.cv.model.Contact;
-import com.lelek.cv.model.JobPlace;
-import com.lelek.cv.model.Person;
+import com.lelek.cv.model.*;
+import com.sun.org.apache.regexp.internal.RE;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
 
 public class DBQuery {
-
-    private final String GET_CV_ID = "SELECT MAX(id) FROM person;";
 
     private final String CLEAR_CONTACT = "DELETE FROM contact;";
     private final String CLEAR_JOBPLACE = "DELETE FROM jobplace;";
@@ -21,6 +17,7 @@ public class DBQuery {
     private final String INSERT_PERSON = "INSERT INTO person (firstname, lastname, birthday) VALUES (?, ?, ?)";
     private final String INSERT_CV = "INSERT INTO cv (person_id) VALUES (?)";
     private final String INSERT_CONTACT = "INSERT INTO contact (phonenumber, address, email) VALUES (? ,? ,?)";
+    private final String INSERT_SKILLS = "INSERT INTO skills (id, skill) VALUES (? ,?)";
     private final String INSERT_JOBPLACE = "INSERT INTO jobplace (company, city, from_date, " +
             "to_date, position_at, id) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -29,6 +26,7 @@ public class DBQuery {
     private final String GET_JOBPLACE_BY_ID = "SELECT * FROM jobplace WHERE id = ?; ";
 
     private Connection connect;
+    private int cvId = -1;
 
     public DBQuery() {
         try {
@@ -43,7 +41,7 @@ public class DBQuery {
 
     }
 
-    public void clearTables() throws SQLException{
+    public void clearTables() throws SQLException {
         List<String> queries = new LinkedList<>();
         queries.add(CLEAR_CONTACT);
         queries.add(CLEAR_JOBPLACE);
@@ -54,14 +52,20 @@ public class DBQuery {
         }
     }
 
-    public void addCV(CV cv) throws SQLException, ClassNotFoundException {
+    public void addCV(Cv cv) throws SQLException {
         PreparedStatement statement = connect.prepareStatement(INSERT_PERSON);
         statement.setString(1, cv.getPerson().getFirstName());
         statement.setString(2, cv.getPerson().getLastName());
         statement.setDate(3, java.sql.Date.valueOf(cv.getPerson().getBirthday()));
-        statement.execute();
+        statement.executeUpdate();
 
-        int cvId = connect.createStatement().executeQuery(GET_CV_ID).getInt("id");
+        ResultSet resultSet = statement.getGeneratedKeys();
+        if(resultSet.next()) {
+            cvId = resultSet.getInt("id");
+            System.out.println(cvId);
+        } else {
+            System.out.println("ID ERROR !!");
+        }
 
         PreparedStatement statement1 = connect.prepareStatement(INSERT_CV);
         statement1.setInt(1, cvId);
@@ -83,20 +87,27 @@ public class DBQuery {
             statement3.setInt(6, cvId);
             statement3.execute();
         }
+        for (Skill skill : cv.getSkills()) {
+            PreparedStatement statement4 = connect.prepareStatement(INSERT_SKILLS);
+            statement4.setInt(1, cvId);
+            statement4.setString(2, skill.getSkill());
+            statement4.execute();
+        }
     }
 
-    public List<CV> getAllCvs() throws SQLException, ClassNotFoundException {
-        List<CV> cvList = new ArrayList<>();
-        int cvId = connect.createStatement().executeQuery(GET_CV_ID).getInt("id");
+    @Deprecated
+    public List<Cv> getAllCvs() throws SQLException {
+        List<Cv> cvList = new ArrayList<>();
+        int cvId = connect.createStatement().executeQuery("SELECT MAX(id) FROM person;").getInt("id");
         for (int i = 1; i <= cvId; i++) {
             cvList.add(getCv(i));
         }
         return cvList;
     }
 
-    public CV getCv(int cvId) throws SQLException, ClassNotFoundException {
+    public Cv getCv(int cvId) throws SQLException {
         List<JobPlace> jobPlaces = new ArrayList<>();
-        CV cv = new CV();
+        Cv cv = new Cv();
 
         PreparedStatement personStatement = connect.prepareStatement(GET_PERSON_BY_ID);
         personStatement.setInt(1, cvId);
@@ -126,7 +137,7 @@ public class DBQuery {
                     .company(jobPlaceResultSet.getString("company"))
                     .from(jobPlaceResultSet.getDate("from_date").toLocalDate())
                     .to(jobPlaceResultSet.getDate("to_date").toLocalDate())
-                    .position(jobPlaceResultSet.getString("position"))
+                    .position(Position.valueOf(jobPlaceResultSet.getString("position")))
                     .build());
         }
         cv.setJobPlaces(jobPlaces);

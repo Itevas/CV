@@ -19,4 +19,8 @@ from : 01.10.2005:
 to : 01.05.2016:
 position : Developer:
 
+skill : Python:
+skill : HTML:
+skill : CSS:
+
 

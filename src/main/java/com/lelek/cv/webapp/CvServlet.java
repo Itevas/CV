@@ -1,6 +1,6 @@
 package com.lelek.cv.webapp;
 
-import com.lelek.cv.model.CV;
+import com.lelek.cv.model.Cv;
 import com.lelek.cv.service.CvFacade;
 
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ import java.time.Period;
 public class CvServlet extends HttpServlet {
 
     private final String PATH = "C:/Users/vleletc/IdeaProjects/cv/src/main/resources/";
-    private CV cv;
+    private Cv cv;
 
     private String getAge() {
         return String.valueOf(Period.between(cv.getPerson().getBirthday(), LocalDate.now()).getYears());

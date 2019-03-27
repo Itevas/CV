@@ -12,3 +12,7 @@ city : New York:
 from : 01.08.1998:
 to : 01.10.2003:
 position : Developer:
+
+skill : Java:
+skill : C:
+skill : C++:

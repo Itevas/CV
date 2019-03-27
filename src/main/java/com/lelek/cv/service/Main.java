@@ -1,8 +1,7 @@
 package com.lelek.cv.service;
 
-import com.lelek.cv.model.CV;
+import com.lelek.cv.model.Cv;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -17,9 +16,9 @@ public class Main {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
         CvFacade facade = new CvFacade();
-
-        facade.clearAllTables();
-
+        Cv cv = facade.readCvFromFile("src/main/resources/cv.txt");
+        facade.writeCvInTable(cv);
+//        facade.clearAllTables();
 
     }
 }

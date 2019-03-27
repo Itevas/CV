@@ -1,9 +1,6 @@
 package com.lelek.cv.service;
 
-import com.lelek.cv.model.CV;
-import com.lelek.cv.model.Contact;
-import com.lelek.cv.model.JobPlace;
-import com.lelek.cv.model.Person;
+import com.lelek.cv.model.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,9 +19,10 @@ public class TxtMapper {
         this.fileName = fileName;
     }
 
-    public CV readValue() throws IOException {
-        CV cv = new CV();
+    public Cv readValue() throws IOException {
+        Cv cv = new Cv();
         List<JobPlace> jobPlaces = new ArrayList<>();
+        List<Skill> skills = new ArrayList<>();
         Scanner scanTxt = new Scanner(new File(fileName)).useDelimiter(":");
 
         while (scanTxt.hasNextLine()) {
@@ -61,10 +59,12 @@ public class TxtMapper {
                 jobPlaces.add((new JobPlace.JobPlaceBuilder())
                         .city(map.get("city").toString())
                         .company(map.get("company").toString())
-                        .position(map.get("position").toString())
+                        .position(Position.getByName(map.get("position").toString()))
                         .from((LocalDate) map.get("from"))
                         .to((LocalDate) map.get("to"))
                         .build());
+            } else if (line.equals("skill")){
+                skills.add(Skill.getByName(scanTxt.next().trim()));
             }
         }
         scanTxt.close();
@@ -80,8 +80,7 @@ public class TxtMapper {
                 .lastName(map.get("lastName").toString())
                 .birthday((LocalDate) map.get("birthday"))
                 .build());
+        cv.setSkills(skills);
         return cv;
     }
-
-
 }

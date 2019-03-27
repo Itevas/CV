@@ -10,6 +10,11 @@
         <address>6 Avenu, New York, USA</address>
         <phoneNumber>0953982280</phoneNumber>
     </contact>
+    <skills>
+        <skill>Java</skill>
+        <skill>HTML</skill>
+        <skill>CSS</skill>
+    </skills>
     <jobPlaces>
         <jobPlace>
             <city>New York</city>

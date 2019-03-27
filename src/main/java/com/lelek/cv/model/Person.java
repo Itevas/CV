@@ -1,9 +1,10 @@
 package com.lelek.cv.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.lelek.cv.service.LocalDateDeserializer;
-import com.lelek.cv.service.LocalDateSerializer;
+import com.lelek.cv.service.mapper.LocalDateDeserializer;
+import com.lelek.cv.service.mapper.LocalDateSerializer;
 import com.lelek.cv.service.ValidateClass;
 
 import javax.validation.constraints.NotEmpty;
@@ -12,8 +13,6 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Person {
 
@@ -36,9 +35,6 @@ public class Person {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthday;
 
-    @NotNull
-    private List<Skill> skills = new ArrayList<>();
-
     public String getFirstName() {
         return firstName;
     }
@@ -51,8 +47,11 @@ public class Person {
         return birthday;
     }
 
-    public String getAge(){
-        return String.valueOf("("+Period.between(getBirthday(), LocalDate.now()).getYears()+" years old)");
+    @JsonIgnore
+    private String age;
+
+    public String getAge() {
+        return String.valueOf("(" + Period.between(getBirthday(), LocalDate.now()).getYears() + " years old)");
     }
 
     public static class PersonBuilder {
