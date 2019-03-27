@@ -1,3 +1,4 @@
+<%@ page import="com.lelek.cv.service.CvFacade" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -15,14 +16,14 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: #004cff;
+            background-color: #0019ff;
             overflow-x: hidden;
             padding-top: 20px;
         }
 
         .sidenav .list {
             margin-left: 80px;
-            background-color: #1044bc;
+            background-color: #0011af;
         }
 
         .sidenav .list a {
@@ -60,14 +61,14 @@
             padding: 6px 10px;
             margin-top: 8px;
             margin-right: 16px;
-            background: #447dff;
+            background: #0011af;
             font-size: 17px;
             border: none;
             cursor: pointer;
         }
 
         .sidenav .search-container button:hover {
-            background: #1044bc;
+            background: #0019ff;
         }
 
         .main {
@@ -75,22 +76,43 @@
             padding: 10px;
         }
 
+        .main .list {
+            display: none;
+            height: 100%;
+        }
+
+        .main .list a {
+            font-size: 25px;
+            color: #0011af;
+            text-decoration: none;
+        }
+
         .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 4px 8px 2px #bcc4ff;
             transition: 0.3s;
-            background-color: #f2f6ff;
+            background-color: #ffffff;
             padding: 16px;
             margin-top: 16px;
         }
 
+        .card:hover .list {
+            display: inline-block;
+        }
+
+        .card:hover .list:hover a:hover {
+            color: #bcc4ff;
+        }
+
         .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            background-color: #e2ebff;
+            box-shadow: 4px 8px 16px 4px #bcc4ff;
+            background-color: #ffffff;
+
         }
 
         .column {
             float: left;
             width: 33%;
+            align-items: flex-start;
         }
 
         .row:after {
@@ -103,14 +125,27 @@
             padding: 16px;
         }
 
+        #overlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2;
+            cursor: pointer;
+        }
 
     </style>
 
 </head>
 <body>
 
-<%--<h1>List of candidates</h1>--%>
-<%--<p>${cv}--%>
+<h1>List of candidates</h1>
+<p>${cv}
 
 <div class="sidenav">
     <div class="search-container">
@@ -130,157 +165,73 @@
 
 <div class="main" align="center">
 
-    <div class="card" align="center" style="width: 85%">
-        <div class="row">
-            <div class="column">
-                <%--<img src="${pageContext.request.contextPath}avatar/homer.png" class="avatar" alt="avatar" style="width: 30%" align="left">--%>
-            </div>
-            <div class="column">
-                <h2><b>Homer Simpson</b></h2>
-                <p>53 years old</p>
-            </div>
-            <div class="column">
-                <h2>Developer</h2>
-            </div>
-        </div>
-    </div>
 
+    <c:forEach items="${cvList}" var="cv">
+        <tr>
+            <td>
+                <div class="card" align="center" style="width: 85%">
+                    <div class="row">
+                            <%--<div class="column">--%>
+                            <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar"--%>
+                            <%--style="width: 30%" align="left">--%>
+                            <%--</div>--%>
+                        <div class="column" style="width: 25%">
+                            <h2>${cv.person.firstName} ${cv.person.lastName}</h2>
+                            <p> ${cv.person.age} </p>
+                            <div id="idHolder" hidden="hidden">${cv.id}</div>
+                        </div>
+                        <div class="column" align="center" style="width: 25%">
+                            <div class="box" align="left">
+                                <p><b>Tel: ${cv.contact.phoneNumber}</b></p>
+                                <p><b>E-mail: ${cv.contact.eMail}</b></p>
+                            </div>
+                        </div>
 
-    <div class="card" align="center" style="width: 85%">
-        <div class="row">
-            <div class="column">
-                <%--<img src="${pageContext.request.contextPath}avatar/neo.png" class="avatar" alt="avatar" style="width: 30%" align="left">--%>
-            </div>
-            <div class="column">
-                <h2><b>Thomas Anderson</b></h2>
-                <p>53 years old</p>
-            </div>
-            <div class="column">
-                <h2>Developer</h2>
-            </div>
-        </div>
-    </div>
+                        <div class="column" align="right">
+                            <div class="list">
+                                <a href="#deploy" onclick="on()">Deploy</a><br>
+                                <a href="NewCvServlet">Edit</a><br>
+                                <a href="#delete" id="del" onclick="del()">Delete</a><br>
+                                <a href="#">Export</a><br>
+                            </div>
+                        </div>
 
-    <div class="card" align="center" style="width: 85%">
-        <div class="row">
-            <div class="column">
-                <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar" style="width: 30%" align="left">--%>
-            </div>
-            <div class="column">
-                <h2><b>John Golt</b></h2>
-                <p>53 years old</p>
-            </div>
-            <div class="column">
-                <h2>Developer</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" align="center" style="width: 85%">
-        <div class="row">
-            <div class="column">
-                <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar" style="width: 30%" align="left">--%>
-            </div>
-            <div class="column">
-                <h2><b>John Golt</b></h2>
-                <p>53 years old</p>
-            </div>
-            <div class="column">
-                <h2>Developer</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" align="center" style="width: 85%">
-        <div class="row">
-            <div class="column">
-                <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar" style="width: 30%" align="left">--%>
-            </div>
-            <div class="column">
-                <h2><b>John Golt</b></h2>
-                <p>53 years old</p>
-            </div>
-            <div class="column">
-                <h2>Developer</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" align="center" style="width: 85%">
-        <div class="row">
-            <div class="column">
-                <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar" style="width: 30%" align="left">--%>
-            </div>
-            <div class="column">
-                <h2><b>John Golt</b></h2>
-                <p>53 years old</p>
-            </div>
-            <div class="column">
-                <h2>Developer</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" align="center" style="width: 85%">
-        <div class="row">
-            <div class="column">
-                <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar" style="width: 30%" align="left">--%>
-            </div>
-            <div class="column">
-                <h2><b>John Golt</b></h2>
-                <p>53 years old</p>
-            </div>
-            <div class="column">
-                <h2>Developer</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" align="center" style="width: 85%">
-        <div class="row">
-            <div class="column">
-                <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar" style="width: 30%" align="left">--%>
-            </div>
-            <div class="column">
-                <h2><b>John Golt</b></h2>
-                <p>53 years old</p>
-            </div>
-            <div class="column">
-                <h2>Developer</h2>
-            </div>
-        </div>
-    </div>
-    <div class="card" align="center" style="width: 85%">
-        <div class="row">
-            <div class="column">
-                <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar" style="width: 30%" align="left">--%>
-            </div>
-            <div class="column">
-                <h2><b>John Golt</b></h2>
-                <p>53 years old</p>
-            </div>
-            <div class="column">
-                <h2>Developer</h2>
-            </div>
-        </div>
-    </div>
-    <div class="card" align="center" style="width: 85%">
-        <div class="row">
-            <div class="column">
-                <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar" style="width: 30%" align="left">--%>
-            </div>
-            <div class="column">
-                <h2><b>John Golt</b></h2>
-                <p>53 years old</p>
-            </div>
-            <div class="column">
-                <h2>Developer</h2>
-            </div>
-        </div>
-    </div>
-
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </c:forEach>
 
 </div>
+
+<script>
+    function del() {
+        var id = document.getElementById("idHolder").value;
+        $.ajax({
+            type: "GET",
+            url:"http://localhost:8080/cv/src/main/java/com/lelek/cv/webapp/DelServlet.java",
+            data: {"name" : "id"},
+
+        })
+    }
+</script>
+
+<div id="overlay">
+    <p> OVER </p>
+
+</div>
+
+
+<script>
+    function on() {
+        document.getElementById("overlay").style.display = "block";
+    }
+    function off() {
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
+
+
 
 </body>
 </html>

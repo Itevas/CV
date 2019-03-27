@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,6 @@ import java.util.List;
 @WebServlet(urlPatterns = "/")
 public class NewCvServlet extends HttpServlet {
     private final String PATH = "C:/Users/vleletc/IdeaProjects/cv/src/main/resources/temp.yml";
-
     private CV cv;
 
     @Override
@@ -41,21 +42,42 @@ public class NewCvServlet extends HttpServlet {
                 .address(request.getParameter("address"))
                 .eMail(request.getParameter("eMail"))
                 .build());
-        jobPlaces.add( new JobPlace.JobPlaceBuilder()
-                .company(request.getParameter("company"))
-                .city(request.getParameter("city"))
-                .from(LocalDate.parse(request.getParameter("from")))
-                .to(LocalDate.parse(request.getParameter("to")))
-                .position(request.getParameter("position"))
-                .build());
+        if(!request.getParameter("company0").isEmpty()) {
+            jobPlaces.add(new JobPlace.JobPlaceBuilder()
+                    .company(request.getParameter("company0"))
+                    .city(request.getParameter("city0"))
+                    .from(LocalDate.parse(request.getParameter("from0")))
+                    .to(LocalDate.parse(request.getParameter("to0")))
+                    .position(request.getParameter("position0"))
+                    .build());
+        }
+        if(!request.getParameter("company1").isEmpty()) {
+            jobPlaces.add(new JobPlace.JobPlaceBuilder()
+                    .company(request.getParameter("company1"))
+                    .city(request.getParameter("city1"))
+                    .from(LocalDate.parse(request.getParameter("from1")))
+                    .to(LocalDate.parse(request.getParameter("to1")))
+                    .position(request.getParameter("position1"))
+                    .build());
+        }
+        if(!request.getParameter("company2").isEmpty()) {
+            jobPlaces.add(new JobPlace.JobPlaceBuilder()
+                    .company(request.getParameter("company2"))
+                    .city(request.getParameter("city2"))
+                    .from(LocalDate.parse(request.getParameter("from2")))
+                    .to(LocalDate.parse(request.getParameter("to2")))
+                    .position(request.getParameter("position2"))
+                    .build());
+        }
+
         cv.setJobPlaces(jobPlaces);
-
-
-
-
-// Add list of Job Places if not empty
-//cv.setJobPlaces();
+        setFieldsValues(cv, request);
         new CvFacade().writeCvInFile(PATH, cv);
         new CvServlet().doPost(request, response);
     }
+
+    private void setFieldsValues(CV cv, HttpServletRequest request){
+        request.setAttribute("cvFields", cv);
+    }
+
 }

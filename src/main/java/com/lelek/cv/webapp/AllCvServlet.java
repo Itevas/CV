@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/allcv")
 public class AllCvServlet extends HttpServlet {
 
     List<CV> cvList;
-
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -29,9 +30,7 @@ public class AllCvServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        CV cv = cvList.get(2);
-        request.setAttribute("cv", cv);
-// https://www.quora.com/How-do-I-display-a-list-of-objects-in-a-JSP-page-easily
+        request.setAttribute("cvList", cvList);
         request.getRequestDispatcher("/WEB-INF/allcv.jsp").forward(request, response);
     }
 }

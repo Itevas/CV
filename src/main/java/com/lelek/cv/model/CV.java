@@ -3,11 +3,11 @@ package com.lelek.cv.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CV{
+public class CV {
 
+    private int id;
     private Person person;
     private Contact contact;
-
     private List<JobPlace> jobPlaces = new ArrayList<>();
 
     public void setPerson(Person person) {
@@ -34,11 +34,20 @@ public class CV{
         return jobPlaces;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "CV{" +
                 "person=" + person +
                 ", contact=" + contact +
+                ", id=" + id +
                 ", jobPlaces=" + jobPlaces +
                 '}';
     }

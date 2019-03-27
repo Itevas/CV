@@ -11,7 +11,7 @@ public class CvFacade {
 
     private static final String PATH = "C:/Users/vleletc/IdeaProjects/cv/src/main/resources/";
 
-    public CV getCvFromFile(String fileName) throws IOException {
+    public CV readCvFromFile(String fileName) throws IOException {
         return new ReadFrom().readFile(fileName);
     }
 
@@ -20,7 +20,7 @@ public class CvFacade {
     }
 
     public void writeCvInTableFromTmpFile() throws IOException, SQLException, ClassNotFoundException {
-        CV cv = getCvFromFile(PATH + "temp.yml");
+        CV cv = readCvFromFile(PATH + "temp.yml");
         new DBQuery().writeCvInTable(cv);
     }
 
@@ -42,5 +42,10 @@ public class CvFacade {
 
     public List<CV> readAllCvFromTable() throws SQLException, ClassNotFoundException{
         return new DBQuery().readAllCvFromTable();
+    }
+
+    public void deleteCvFromTable (int cvId){
+        new DBQuery().deleteCvFromTable(cvId);
+        System.out.println(cvId+"222222222222222222222222222222222222222222222222222222222222222");
     }
 }

@@ -6,24 +6,24 @@ import com.lelek.cv.service.LocalDateDeserializer;
 import com.lelek.cv.service.LocalDateSerializer;
 import com.lelek.cv.service.ValidateClass;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Set;
-import java.util.logging.Logger;
-
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Person {
 
-    private String firstName;
-
     private Person() {
     }
+
+    @NotNull(message = "firstName might not be NULL")
+    @NotEmpty(message = "Empty firstName")
+    @Size(min = 1, max = 16, message = "Invalid lenght firstName")
+    private String firstName;
 
     @NotNull(message = "lastName might not be NULL")
     @NotEmpty(message = "Empty lastName")
@@ -36,9 +36,9 @@ public class Person {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthday;
 
-    @NotNull(message = "firstName might not be NULL")
-    @NotEmpty(message = "Empty firstName")
-    @Size(min = 1, max = 16, message = "Invalid lenght firstName")
+    @NotNull
+    private List<Skill> skills = new ArrayList<>();
+
     public String getFirstName() {
         return firstName;
     }
@@ -49,6 +49,10 @@ public class Person {
 
     public LocalDate getBirthday() {
         return birthday;
+    }
+
+    public String getAge(){
+        return String.valueOf("("+Period.between(getBirthday(), LocalDate.now()).getYears()+" years old)");
     }
 
     public static class PersonBuilder {
@@ -75,7 +79,7 @@ public class Person {
         }
 
         public Person build() {
-            (new ValidateClass()).validate(person);
+            new ValidateClass().validate(person);
             return person;
         }
     }

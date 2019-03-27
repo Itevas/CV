@@ -44,10 +44,6 @@ public class JobPlace {
 
     private Position position;
 
-    public enum Position {
-        Developer, DevOps, QAEngineer
-    }
-
     public String getCompany() {
         return company;
     }

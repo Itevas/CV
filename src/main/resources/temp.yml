@@ -3,8 +3,14 @@ person:
   firstName: "Vasyl"
   lastName: "Lelek"
   birthday: "26.07.1985"
+  age: "(33 years old)"
 contact:
   phoneNumber: "0953982280"
   address: "Ukraine"
-  eMail: "itevas@ukr.net"
-jobPlaces: []
+  eMail: "itevas@cv.ua"
+jobPlaces:
+- company: "Master service"
+  city: "Kyiv"
+  from: "26.04.2011"
+  to: "02.01.2018"
+  position: "DevOps"
