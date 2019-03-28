@@ -20,15 +20,28 @@ public class AllCvServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        {
-            try {
-                cvList = new CvFacade().readAllCvFromTable();
-            } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+        try {
+            cvList = new CvFacade().readAllCvFromTable();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
         request.setAttribute("cvList", cvList);
         request.getRequestDispatcher("/WEB-INF/allcv.jsp").forward(request, response);
+    }
+
+    @Override
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        CvFacade facade = new CvFacade();
+        int id = Integer.valueOf(request.getParameter("cv_id"));
+        facade.deleteCvFromTable(id);
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        System.out.println(" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        CvFacade facade = new CvFacade();
+        int id = Integer.valueOf(request.getParameter("cv_id"));
+        facade.deleteCvFromTable(id);
     }
 }

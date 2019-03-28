@@ -45,7 +45,11 @@ public class CvFacade {
     }
 
     public void deleteCvFromTable (int cvId){
-        new DBQuery().deleteCvFromTable(cvId);
-        System.out.println(cvId+"222222222222222222222222222222222222222222222222222222222222222");
+//        new DBQuery().deleteCvFromTable(cvId);
+        System.out.println(" !!!!!!!!!!!!!!! CV NUMBER: "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+
+                "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+
+                cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+
+                cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+
+                cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId);
     }
 }

@@ -22,9 +22,9 @@ position : Developer:
 company : Duff Solutions:
 city : Springfield:
 from : 01.11.2010:
-to : This time:
+to : 01.04.2017:
 position : Developer:
 
-skill : JavaScript:
-skill : HTML:
-skill : CSS:
+skill : Scala:
+skill : Swift:
+skill : C++

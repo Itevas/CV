@@ -27,7 +27,6 @@ public class TxtMapper {
 
         while (scanTxt.hasNextLine()) {
             String line = scanTxt.next().trim();
-// Make it shorter
             if (line.equals("firstName")) {
                 map.put(line, (scanTxt.next().trim()));
             } else if (line.equals("lastName")) {

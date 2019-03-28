@@ -21,6 +21,6 @@ position : Developer:
 
 skill : Python:
 skill : HTML:
-skill : CSS:
+skill : CSS
 
 

@@ -3,7 +3,7 @@ firstName : Thomas:
 lastName : Anderson:
 birthday : 11.03.1962:
 
-phoneNumber : 0953982280:
+phoneNumber : 0953458280:
 address : Lower Downtown, Capitol City, USA:
 eMail : NeoTheOne@matrix.com:
 
@@ -15,4 +15,6 @@ position : Developer:
 
 skill : Java:
 skill : C:
-skill : C++:
+skill : C++
+
+

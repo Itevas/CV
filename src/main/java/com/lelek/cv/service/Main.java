@@ -16,8 +16,21 @@ public class Main {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
         CvFacade facade = new CvFacade();
-        Cv cv = facade.readCvFromFile("src/main/resources/cv.txt");
-        facade.writeCvInTable(cv);
+
+        facade.deleteCvFromTable(2);
+
+
+//        Cv cv1 = facade.readCvFromFile("src/main/resources/cv.txt");
+//        facade.writeCvInTable(cv1);
+//        Cv cv2 = facade.readCvFromFile("src/main/resources/cv2.txt");
+//        facade.writeCvInTable(cv2);
+//        Cv cv3 = facade.readCvFromFile("src/main/resources/cv3.txt");
+//        facade.writeCvInTable(cv3);
+//        Cv cv4 = facade.readCvFromFile("src/main/resources/cv4.txt");
+//        facade.writeCvInTable(cv4);
+
+
+
 //        facade.clearAllTables();
 
     }

@@ -7,14 +7,4 @@
          xmlns="http://java.sun.com/xml/ns/j2ee"
          version="2.4" id="WebApp_ID">
 
-    <!--<servlet>-->
-        <!--<servlet-name>NewCvServlet</servlet-name>-->
-        <!--<servlet-class>java.com.lelek.cv.webapp.NeCvServlet</servlet-class>-->
-    <!--</servlet>-->
-
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>NewCvServlet</servlet-name>-->
-        <!--<url-pattern>/NewCvServlet</url-pattern>-->
-    <!--</servlet-mapping>-->
-
 </web-app>

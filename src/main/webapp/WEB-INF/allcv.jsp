@@ -6,6 +6,8 @@
 <head>
     <title>All CV preview</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js"></script>
 
     <style>
 
@@ -111,7 +113,7 @@
 
         .column {
             float: left;
-            width: 33%;
+            width: 25%;
             align-items: flex-start;
         }
 
@@ -134,9 +136,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 2;
             cursor: pointer;
+        }
+
+        .show p{
+            color: #ffffff;
         }
 
     </style>
@@ -158,7 +164,7 @@
     <div class="list">
         <a href="#">Name</a>
         <a href="#">Last Name</a>
-        <a href="#">Position</a>
+        <a href="#">Skill</a>
     </div>
 </div>
 
@@ -178,10 +184,18 @@
                         <div class="column" style="width: 25%">
                             <h2>${cv.person.firstName} ${cv.person.lastName}</h2>
                             <p> ${cv.person.age} </p>
-                            <div id="idHolder" hidden="hidden">${cv.id}</div>
+                        </div>
+                        <div class="column" style="width: 25%">
+                            <c:forEach items="${cv.skills}" var="Skill">
+                            <tr>
+                                <td>
+                                    <h3>${Skill.skill}</h3>
+                                </td>
+                            </tr>
+                            </c:forEach>
                         </div>
                         <div class="column" align="center" style="width: 25%">
-                            <div class="box" align="left">
+                            <div class="box" align="center">
                                 <p><b>Tel: ${cv.contact.phoneNumber}</b></p>
                                 <p><b>E-mail: ${cv.contact.eMail}</b></p>
                             </div>
@@ -189,9 +203,10 @@
 
                         <div class="column" align="right">
                             <div class="list">
-                                <a href="#deploy" onclick="on()">Deploy</a><br>
-                                <a href="NewCvServlet">Edit</a><br>
-                                <a href="#delete" id="del" onclick="del()">Delete</a><br>
+                                <input class="idHolder" value="${cv.id}" id="holder" hidden="hidden">
+                                <a href="#" onclick="on()">Deploy</a><br>
+                                <a href="">Edit</a><br>
+                                <a href="#" class="del" id="${cv.id}" onclick="del()">Delete</a><br>
                                 <a href="#">Export</a><br>
                             </div>
                         </div>
@@ -204,19 +219,34 @@
 
 </div>
 
+
+
 <script>
     function del() {
-        var id = document.getElementById("idHolder").value;
-        $.ajax({
-            type: "GET",
-            url:"http://localhost:8080/cv/src/main/java/com/lelek/cv/webapp/DelServlet.java",
-            data: {"name" : "id"},
+        // https://www.w3schools.com/js/js_htmldom_eventlistener.asp
+        var id = -1;
+        var x = document.getElementsByClassName("del");
+        function getId(){
+            id = this.target.id()
+        }
+        x.addEventListener('click', getId);
 
-        })
+        $.post(
+            "/allcv",
+            {
+                cv_id: id
+            },
+            onAjaxSuccess
+        );
+
+        function onAjaxSuccess(data)
+        {
+            alert(data);
+        }
     }
 </script>
 
-<div id="overlay">
+<div class="show" id="overlay">
     <p> OVER </p>
 
 </div>
@@ -226,11 +256,11 @@
     function on() {
         document.getElementById("overlay").style.display = "block";
     }
+
     function off() {
         document.getElementById("overlay").style.display = "none";
     }
 </script>
-
 
 
 </body>
