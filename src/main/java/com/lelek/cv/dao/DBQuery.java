@@ -10,24 +10,28 @@ import java.util.*;
 public class DBQuery {
 
     private final String CLEAR_CONTACT = "DELETE FROM contact;";
-    private final String CLEAR_JOBPLACE = "DELETE FROM jobplace;";
+    private final String CLEAR_JOB_PLACE = "DELETE FROM jobplace;";
     private final String CLEAR_SKILLS = "DELETE FROM skills;";
     private final String CLEAR_PERSON = "DELETE FROM person;";
+
+    private final String DELETE_CONTACT = "DELETE FROM contact WHERE id = ?;";
+    private final String DELETE_JOB_PLACE = "DELETE FROM jobplace WHERE id = ?;";
+    private final String DELETE_SKILLS = "DELETE FROM skills WHERE id = ?;";
+    private final String DELETE_PERSON = "DELETE FROM person WHERE id = ?;";
 
     private final String INSERT_PERSON =
             "INSERT INTO person (firstname, lastname, birthday) VALUES (?, ?, ?) RETURNING id";
     private final String INSERT_CONTACT = "INSERT INTO contact (phonenumber, address, email, id) VALUES (? ,? ,?, ?)";
     private final String INSERT_SKILLS = "INSERT INTO skills (id, skill) VALUES (? ,?)";
-    private final String INSERT_JOBPLACE = "INSERT INTO jobplace (company, city, from_date, " +
+    private final String INSERT_JOBP_LACE = "INSERT INTO jobplace (company, city, from_date, " +
             "to_date, position_at, id) VALUES (?, ?, ?, ?, ?, ?)";
 
     private final String GET_PERSON_BY_ID = "SELECT * FROM person WHERE id = ?; ";
     private final String GET_CONTACT_BY_ID = "SELECT * FROM contact WHERE id = ?; ";
-    private final String GET_JOBPLACE_BY_ID = "SELECT * FROM jobplace WHERE id = ?; ";
+    private final String GET_JOB_PLACE_BY_ID = "SELECT * FROM jobplace WHERE id = ?; ";
     private final String GET_SKILLS_BY_ID = "SELECT * FROM skills WHERE id = ?; ";
 
     private Connection connect;
-    private int cvId = -1;
 
     public DBQuery() {
         try {
@@ -38,14 +42,25 @@ public class DBQuery {
         }
     }
 
-    public void deleteCvFromTable(int cvId) {
-
+    public void deleteCv(int cvId) throws SQLException {
+        PreparedStatement contactStatement = connect.prepareStatement(DELETE_JOB_PLACE);
+        contactStatement.setInt(1, cvId);
+        contactStatement.execute();
+        PreparedStatement jobPlaceStatement = connect.prepareStatement(DELETE_CONTACT);
+        jobPlaceStatement.setInt(1, cvId);
+        jobPlaceStatement.execute();
+        PreparedStatement skillsStatement = connect.prepareStatement(DELETE_SKILLS);
+        skillsStatement.setInt(1, cvId);
+        skillsStatement.execute();
+        PreparedStatement personStatement = connect.prepareStatement(DELETE_PERSON);
+        personStatement.setInt(1, cvId);
+        personStatement.execute();
     }
 
     public void clearTables() throws SQLException {
         List<String> queries = new LinkedList<>();
         queries.add(CLEAR_CONTACT);
-        queries.add(CLEAR_JOBPLACE);
+        queries.add(CLEAR_JOB_PLACE);
         queries.add(CLEAR_SKILLS);
         queries.add(CLEAR_PERSON);
         for (String query : queries) {
@@ -54,6 +69,7 @@ public class DBQuery {
     }
 
     public void addCV(Cv cv) throws SQLException {
+        int cvId = -1;
         PreparedStatement statement = connect.prepareStatement(INSERT_PERSON);
         statement.setString(1, cv.getPerson().getFirstName());
         statement.setString(2, cv.getPerson().getLastName());
@@ -74,7 +90,7 @@ public class DBQuery {
         statement2.execute();
 
         for (JobPlace j : cv.getJobPlaces()) {
-            PreparedStatement statement3 = connect.prepareStatement(INSERT_JOBPLACE);
+            PreparedStatement statement3 = connect.prepareStatement(INSERT_JOBP_LACE);
             statement3.setString(1, j.getCompany());
             statement3.setString(2, j.getCity());
             statement3.setDate(3, java.sql.Date.valueOf(j.getFrom()));
@@ -139,7 +155,7 @@ public class DBQuery {
             skills.add(Skill.getByName(skillsResultSet.getString("skill")));
         }
 
-        PreparedStatement jobPlaceStatement = connect.prepareStatement(GET_JOBPLACE_BY_ID);
+        PreparedStatement jobPlaceStatement = connect.prepareStatement(GET_JOB_PLACE_BY_ID);
         jobPlaceStatement.setInt(1, cvId);
         ResultSet jobPlaceResultSet = jobPlaceStatement.executeQuery();
         while (jobPlaceResultSet.next()) {

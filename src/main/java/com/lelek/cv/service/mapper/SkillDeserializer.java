@@ -15,7 +15,6 @@ public class SkillDeserializer extends StdDeserializer<Skill> {
 
     @Override
     public Skill deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-        String skill = p.getValueAsString();
-        return Skill.getByName(skill);
+        return Skill.getByName(p.getValueAsString());
     }
 }

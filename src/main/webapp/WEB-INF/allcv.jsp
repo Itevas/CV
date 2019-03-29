@@ -6,8 +6,11 @@
 <head>
     <title>All CV preview</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <%--<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>--%>
     <script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <%--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <style>
 
@@ -175,7 +178,7 @@
     <c:forEach items="${cvList}" var="cv">
         <tr>
             <td>
-                <div class="card" align="center" style="width: 85%">
+                <div class="card" id="${cv.id}" align="center" style="width: 85%">
                     <div class="row">
                             <%--<div class="column">--%>
                             <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar"--%>
@@ -204,9 +207,9 @@
                         <div class="column" align="right">
                             <div class="list">
                                 <input class="idHolder" value="${cv.id}" id="holder" hidden="hidden">
-                                <a href="#" onclick="on()">Deploy</a><br>
-                                <a href="">Edit</a><br>
-                                <a href="#" class="del" id="${cv.id}" onclick="del()">Delete</a><br>
+                                <a href="#" class="deploy" id="${cv.id}">Deploy</a><br>
+                                <a href="#">Edit</a><br>
+                                <a href="#" class="del" id="${cv.id}">Delete</a><br>
                                 <a href="#">Export</a><br>
                             </div>
                         </div>
@@ -222,34 +225,41 @@
 
 
 <script>
-    function del() {
-        // https://www.w3schools.com/js/js_htmldom_eventlistener.asp
-        var id = -1;
-        var x = document.getElementsByClassName("del");
-        function getId(){
-            id = this.target.id()
+    $("[href].del").click(function () {
+        var cv_id = $(this).attr("id");
+        var ok = confirm("Are You really want to delete this CV? ");
+        var card = document.getElementById(cv_id);
+        if(ok) {
+            $(card).hide();
+            $.ajax({
+                type: "DELETE",
+                url: "/allcv",
+                data: {id: cv_id},
+                success: function (response) {
+                    alert(response);
+                }
+            })
         }
-        x.addEventListener('click', getId);
-
-        $.post(
-            "/allcv",
-            {
-                cv_id: id
-            },
-            onAjaxSuccess
-        );
-
-        function onAjaxSuccess(data)
-        {
-            alert(data);
-        }
-    }
+    })
 </script>
 
 <div class="show" id="overlay">
     <p> OVER </p>
 
 </div>
+
+<script>
+    $("[href].deploy").click(function () {
+        var cv_id = $(this).attr("id");
+        var card = document.getElementById(cv_id);
+        on();
+        $(document).keyup(function(e) {
+            if (e.key === "Escape") {
+                off();
+            }
+        });
+    })
+</script>
 
 
 <script>

@@ -14,8 +14,7 @@ public class PositionDeserializer extends StdDeserializer<Position> {
     }
 
     @Override
-    public Position deserialize(JsonParser p, DeserializationContext ctxt) throws IOException{
-        String position = p.getValueAsString();
-        return Position.getByName(position);
+    public Position deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        return Position.getByName(p.getValueAsString());
     }
 }

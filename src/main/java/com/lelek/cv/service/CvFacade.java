@@ -19,7 +19,7 @@ public class CvFacade {
         new WriterInFile().writeInYmlFile(fileName, cv);
     }
 
-    public void writeCvInTableFromTmpFile() throws IOException, SQLException, ClassNotFoundException {
+    public void writeCvInTableFromTmpFile() throws IOException, SQLException {
         Cv cv = readCvFromFile(PATH + "temp.yml");
         new DBQuery().addCV(cv);
     }
@@ -28,28 +28,23 @@ public class CvFacade {
         new WriterInFile().writeInYmlFile(cv);
     }
 
-    public void writeCvInTable(Cv cv) throws SQLException, ClassNotFoundException {
+    public void writeCvInTable(Cv cv) throws SQLException {
         new DBQuery().addCV(cv);
     }
 
-    public void clearAllTables() throws SQLException, ClassNotFoundException {
+    public void clearAllTables() throws SQLException {
         new DBQuery().clearTables();
     }
 
-    public Cv readCvFromTable(int cvId) throws SQLException, ClassNotFoundException {
+    public Cv readCvFromTable(int cvId) throws SQLException {
         return new DBQuery().getCv(cvId);
     }
 
-    public List<Cv> readAllCvFromTable() throws SQLException, ClassNotFoundException{
+    public List<Cv> readAllCvFromTable() throws SQLException, ClassNotFoundException {
         return new DBQuery().getAllCvs();
     }
 
-    public void deleteCvFromTable (int cvId){
-//        new DBQuery().deleteCvFromTable(cvId);
-        System.out.println(" !!!!!!!!!!!!!!! CV NUMBER: "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+
-                "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+
-                cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+
-                cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+
-                cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId+ "  "+cvId);
+    public void deleteCvFromTable(int cvId) throws SQLException {
+        new DBQuery().deleteCv(cvId);
     }
 }
