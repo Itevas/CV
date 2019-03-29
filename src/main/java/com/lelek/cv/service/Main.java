@@ -10,7 +10,9 @@ import java.sql.SQLException;
 //Create War and launch from console
 //Handle exceptions
 //Dao cut
-//id names
+//id names DB
+//logs
+//rename variables
 
 public class Main {
 
@@ -20,14 +22,14 @@ public class Main {
 
         CvFacade facade = new CvFacade();
 
-        Cv cv1 = facade.readCvFromFile("src/main/resources/cv.txt");
-        facade.writeCvInTable(cv1);
-        Cv cv2 = facade.readCvFromFile("src/main/resources/cv2.txt");
-        facade.writeCvInTable(cv2);
-        Cv cv3 = facade.readCvFromFile("src/main/resources/cv3.txt");
-        facade.writeCvInTable(cv3);
-        Cv cv4 = facade.readCvFromFile("src/main/resources/cv4.txt");
-        facade.writeCvInTable(cv4);
+//        Cv cv1 = facade.readCvFromFile("src/main/resources/cv.txt");
+//        facade.writeCvInTable(cv1);
+//        Cv cv2 = facade.readCvFromFile("src/main/resources/cv2.txt");
+//        facade.writeCvInTable(cv2);
+//        Cv cv3 = facade.readCvFromFile("src/main/resources/cv3.txt");
+//        facade.writeCvInTable(cv3);
+//        Cv cv4 = facade.readCvFromFile("src/main/resources/cv4.txt");
+//        facade.writeCvInTable(cv4);
 
 
 
