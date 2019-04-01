@@ -9,18 +9,49 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Logger;
 
-@WebServlet(urlPatterns = "/")
-public class NewCvServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/add")
+public class AddController extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger("com.lelek.cv.webapp.AddController");
     private final String PATH = "C:/Users/vleletc/IdeaProjects/cv/src/main/resources/temp.yml";
     private Cv cv;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/WEB-INF/new.jsp").forward(request, response);
+            Scanner s = new Scanner(request.getInputStream())/*.useDelimiter("=")*/;
+            while (s.hasNext()){
+                System.out.println(s.next());
+            }
+        System.out.println("id param = "+request.getParameter("id"));
+//        System.out.println("id attr = "+request.getAttribute("id"));
+//            if(s.hasNext()) {
+//                String result = s.next().equals("id") ? s.next() : "";
+//                int id = Integer.valueOf(result);
+//            LOGGER.severe("Hell of World in AddController " + id);
+//                CvFacade facade = new CvFacade();
+//                try {
+//                    Cv cv = facade.getCv(id);
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+//                request.setAttribute("cv", cv);
+//
+//
+////            response.setContentType("text/plain");
+////            response.setCharacterEncoding("UTF-8");
+////            response.getWriter().write("ok");
+//        }
+//        response.setContentType("text/plain");
+//        response.setCharacterEncoding("UTF-8");
+//        response.getWriter().write("empty");
+        LOGGER.severe("Hell of World in AddController after if");
+        request.getRequestDispatcher("/WEB-INF/add.jsp").forward(request, response);
     }
 
     @Override

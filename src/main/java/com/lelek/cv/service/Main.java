@@ -5,14 +5,14 @@ import com.lelek.cv.model.Cv;
 import java.io.IOException;
 import java.sql.SQLException;
 
-//Create UI
+//Add skills to UI "create"
 //Navigate in Servlets
 //Create War and launch from console
 //Handle exceptions
 //Dao cut
-//id names DB
 //logs
-//rename variables
+//check all for "sout"
+//remove Main class
 
 public class Main {
 
@@ -33,7 +33,7 @@ public class Main {
 
 
 
-//        facade.clearAllTables();
+//        facade.clearTables();
 
     }
 }

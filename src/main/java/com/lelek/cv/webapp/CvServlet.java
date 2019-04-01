@@ -44,6 +44,6 @@ public class CvServlet extends HttpServlet {
                 request.setAttribute("toTxt", "To:");
             }
         }
-        request.getRequestDispatcher("/WEB-INF/new.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/add.jsp").forward(request, response);
     }
 }

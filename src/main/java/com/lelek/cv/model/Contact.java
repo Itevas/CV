@@ -10,14 +10,11 @@ public class Contact {
 
     private Contact(){}
 
-    @NotNull
     @Size(min = 10, max=10, message = "wrong phone number")
     private String phoneNumber;
 
-    @NotNull
     private String address;
 
-    @Email
     private String eMail;
 
     public String getPhoneNumber() {

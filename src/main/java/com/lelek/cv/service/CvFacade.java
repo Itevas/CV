@@ -1,6 +1,8 @@
 package com.lelek.cv.service;
 
 import com.lelek.cv.dao.DBQuery;
+import com.lelek.cv.dao.DaoCv;
+import com.lelek.cv.dao.DaoList;
 import com.lelek.cv.model.Cv;
 
 import java.io.IOException;
@@ -21,7 +23,7 @@ public class CvFacade {
 
     public void writeCvInTableFromTmpFile() throws IOException, SQLException {
         Cv cv = readCvFromFile(PATH + "temp.yml");
-        new DBQuery().addCV(cv);
+        new DBQuery().add(cv);
     }
 
     public void writeCvInFile(Cv cv) throws IOException {
@@ -29,22 +31,22 @@ public class CvFacade {
     }
 
     public void writeCvInTable(Cv cv) throws SQLException {
-        new DBQuery().addCV(cv);
+        new DBQuery().add(cv);
     }
 
-    public void clearAllTables() throws SQLException {
-        new DBQuery().clearTables();
+    public void clearTables() throws SQLException {
+        new DBQuery().clear();
     }
 
-    public Cv readCvFromTable(int cvId) throws SQLException {
-        return new DBQuery().getCv(cvId);
+    public Cv get(int cvId) throws SQLException {
+        return new DaoCv().get(cvId);
     }
 
-    public List<Cv> readAllCvFromTable() throws SQLException, ClassNotFoundException {
-        return new DBQuery().getAllCvs();
+    public List<Cv> get() throws SQLException{
+        return new DaoList().get();
     }
 
-    public void deleteCvFromTable(int cvId) throws SQLException {
-        new DBQuery().deleteCv(cvId);
+    public void delete(int cvId) throws SQLException {
+        new DBQuery().delete(cvId);
     }
 }
