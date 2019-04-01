@@ -52,15 +52,16 @@ public class ListController extends HttpServlet {
     @Override
     public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Scanner s = new Scanner(request.getInputStream()).useDelimiter("=");
-        String id = s.next().equals("id") ? s.next() : "";
-        LOGGER.severe("Hell of World in ListController " + id);
-        Cv cv = null;
+        int id = Integer.valueOf(s.next().equals("id") ? s.next() : "");
+        LOGGER.severe("Input Stream data " + id);
+        Cv cv_preview = null;
         try {
-            cv = new CvFacade().get(Integer.valueOf(id));
+            cv_preview = new CvFacade().get(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        LOGGER.severe(cv.toString());
-        request.setAttribute("preview", cv);
+        LOGGER.severe("put method ListController " +cv_preview.toString());
+        request.setAttribute("preview", cv_preview);
+
     }
 }
