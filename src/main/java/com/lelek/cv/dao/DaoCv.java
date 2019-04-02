@@ -21,7 +21,11 @@ public class DaoCv {
             "JOIN contact ON person.id = contact.person_id\n" +
             "JOIN job_place ON person.id = job_place.person_id\n" +
             "WHERE id =?;";
-    private final String DELETE_CV = "";
+
+    private final String DELETE_CONTACT = "DELETE FROM contact WHERE id = ?;";
+    private final String DELETE_JOB_PLACE = "DELETE FROM jobplace WHERE id = ?;";
+    private final String DELETE_SKILLS = "DELETE FROM skills WHERE id = ?;";
+    private final String DELETE_PERSON = "DELETE FROM person WHERE id = ?;";
 
     public DaoCv(){
         try {
@@ -65,4 +69,20 @@ public class DaoCv {
         cv.setJobPlaces(new ArrayList<>(jobPlaces));
         return cv;
     }
+
+    public void delete(int cvId) throws SQLException {
+        PreparedStatement contactStatement = connect.prepareStatement(DELETE_JOB_PLACE);
+        contactStatement.setInt(1, cvId);
+        contactStatement.execute();
+        PreparedStatement jobPlaceStatement = connect.prepareStatement(DELETE_CONTACT);
+        jobPlaceStatement.setInt(1, cvId);
+        jobPlaceStatement.execute();
+        PreparedStatement skillsStatement = connect.prepareStatement(DELETE_SKILLS);
+        skillsStatement.setInt(1, cvId);
+        skillsStatement.execute();
+        PreparedStatement personStatement = connect.prepareStatement(DELETE_PERSON);
+        personStatement.setInt(1, cvId);
+        personStatement.execute();
+    }
+
 }

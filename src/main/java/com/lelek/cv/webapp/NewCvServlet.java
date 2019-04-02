@@ -1,7 +1,6 @@
 package com.lelek.cv.webapp;
 
 import com.lelek.cv.model.*;
-import com.lelek.cv.service.CvFacade;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +19,7 @@ public class NewCvServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/WEB-INF/new.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/add.jsp").forward(request, response);
     }
 
     @Override
@@ -67,8 +66,7 @@ public class NewCvServlet extends HttpServlet {
 
         cv.setJobPlaces(jobPlaces);
         setFieldsValues(cv, request);
-        new CvFacade().writeCvInFile(PATH, cv);
-        new CvServlet().doPost(request, response);
+
     }
 
     private void setFieldsValues(Cv cv, HttpServletRequest request){

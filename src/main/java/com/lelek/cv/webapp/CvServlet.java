@@ -1,7 +1,6 @@
 package com.lelek.cv.webapp;
 
 import com.lelek.cv.model.Cv;
-import com.lelek.cv.service.CvFacade;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +23,7 @@ public class CvServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        cv = new CvFacade().readCvFromFile(PATH + "temp.yml");
+
 
         request.setAttribute("cv", cv);
         request.setAttribute("contact", "Contact:");
@@ -44,6 +43,6 @@ public class CvServlet extends HttpServlet {
                 request.setAttribute("toTxt", "To:");
             }
         }
-        request.getRequestDispatcher("/WEB-INF/new.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/add.jsp").forward(request, response);
     }
 }

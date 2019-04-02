@@ -8,9 +8,9 @@ public class DBConnection {
     private static final Logger LOGGER = Logger.getLogger("com.lelek.cv.service.DBConnection");
     private static DBConnection instance;
 
-    private final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private final String URL = "jdbc:postgresql://localhost:5432/cv";
     private final String user = "postgres";
-    private final String pass = "postgres";
+    private final String pass = "root";
     private Connection connection;
 
     private DBConnection() throws SQLException, ClassNotFoundException {

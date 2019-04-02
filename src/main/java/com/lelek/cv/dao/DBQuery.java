@@ -14,10 +14,7 @@ public class DBQuery {
     private final String CLEAR_SKILLS = "DELETE FROM skills;";
     private final String CLEAR_PERSON = "DELETE FROM person;";
 
-    private final String DELETE_CONTACT = "DELETE FROM contact WHERE id = ?;";
-    private final String DELETE_JOB_PLACE = "DELETE FROM jobplace WHERE id = ?;";
-    private final String DELETE_SKILLS = "DELETE FROM skills WHERE id = ?;";
-    private final String DELETE_PERSON = "DELETE FROM person WHERE id = ?;";
+
 
     private final String INSERT_PERSON =
             "INSERT INTO person (firstname, lastname, birthday) VALUES (?, ?, ?) RETURNING id";
@@ -40,21 +37,6 @@ public class DBQuery {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public void deleteCv(int cvId) throws SQLException {
-        PreparedStatement contactStatement = connect.prepareStatement(DELETE_JOB_PLACE);
-        contactStatement.setInt(1, cvId);
-        contactStatement.execute();
-        PreparedStatement jobPlaceStatement = connect.prepareStatement(DELETE_CONTACT);
-        jobPlaceStatement.setInt(1, cvId);
-        jobPlaceStatement.execute();
-        PreparedStatement skillsStatement = connect.prepareStatement(DELETE_SKILLS);
-        skillsStatement.setInt(1, cvId);
-        skillsStatement.execute();
-        PreparedStatement personStatement = connect.prepareStatement(DELETE_PERSON);
-        personStatement.setInt(1, cvId);
-        personStatement.execute();
     }
 
     public void clearTables() throws SQLException {
