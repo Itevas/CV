@@ -17,6 +17,7 @@ hs_err_pid*
 *.iws
 out/
 .idea_modules/
+build/
 ##########################
 
 ##########################
@@ -24,6 +25,7 @@ out/
 ##########################
 .idea/**/gradle.xml
 .idea/**/libraries
+.gradle/
 
 
 # Gradle and Maven with auto-import
