@@ -151,6 +151,9 @@
 </head>
 <body>
 
+<h1>List of candidates</h1>
+<p>${cv}
+
 <div class="sidenav">
     <div class="search-container">
         <form action="${pageContext.request.contextPath}/">
@@ -259,6 +262,8 @@
 <%--                <img src="${url}" class="avatar" alt="photo" style="width: 50%" align="left">--%>
 <%--            </div>--%>
 
+            <div class="column">
+
                 <div>
                     <h1>${preview.person.firstName} ${preview.person.lastName}</h1>
                     <h4>${preview.person.birthday} ${age}</h4>
@@ -278,8 +283,8 @@
                                 <h3>JobPlace:</h3>
                                 <p>${jobPlace.company}</p>
                                 <p>${jobPlace.city}</p>
-                                <p>From:  ${jobPlace.from}</p>
-                                <p>To:  ${jobPlace.to}</p>
+                                <p>${fromTxt} ${jobPlace.from}</p>
+                                <p>${toTxt} ${jobPlace.to}</p>
                                 <p>${jobPlace.position}</p>
                             </div>
                         </td>
@@ -298,24 +303,32 @@
         $.ajax({
             type: "PUT",
             url: "/list",
-            data: {id : cv_id},
+            data: {id: cv_id},
             success: function (response) {
+                alert(response);
                 on();
             }
-        });
+        })
+
         $(document).keyup(function(e) {
             if (e.key === "Escape") {
                 off();
             }
         });
-    });
+    })
+</script>
+
+
+<script>
     function on() {
         document.getElementById("overlay").style.display = "block";
     }
+
     function off() {
         document.getElementById("overlay").style.display = "none";
     }
 </script>
+
 
 </body>
 </html>
