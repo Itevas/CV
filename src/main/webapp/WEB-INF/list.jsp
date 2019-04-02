@@ -151,6 +151,9 @@
 </head>
 <body>
 
+<h1>List of candidates</h1>
+<p>${cv}
+
 <div class="sidenav">
 </div>
 
@@ -305,6 +308,7 @@
         document.getElementById("overlay").style.display = "none";
     }
 </script>
+
 
 </body>
 </html>
