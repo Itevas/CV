@@ -123,17 +123,16 @@
     <div class="simpletext">fill the form:</div>
     <br>
 
-    <form class="form" id="form" action="${pageContext.request.contextPath}/" method="post">
-
-        <input type="text" name="firstName" placeholder="First name" value="${cv.person.firstName}"><br><br>
-        <input type="text" name="lastName" placeholder="Last name" value="${cv.person.lastName}"><br><br>
+    <form class="form" id="form" action="${pageContext.request.contextPath}add.jsp" method="post">
+        <input type="text" name="firstName" id="firstName" placeholder="First name" value="${cv_edit.person.firstName}"><br><br>
+        <input type="text" name="lastName" placeholder="Last name" value="${cv_edit.person.lastName}"><br><br>
         <div class="simpletext">Birthday:</div>
-        <input type="date" name="birthday" placeholder="Birthday" value="${cv.person.birthday}"><br><br>
+        <input type="date" name="birthday" placeholder="Birthday" value="${cv_edit.person.birthday}"><br><br>
 
-        <input type="tel" name="phoneNumber" placeholder="phone" value="${cv.contact.phoneNumber}"><br><br>
+        <input type="tel" name="phoneNumber" placeholder="phone" value="${cv_edit.contact.phoneNumber}"><br><br>
         <input type="text" name="address" placeholder="address (street, city, country)"
-               value="${cvFields.contact.address}"><br><br>
-        <input type="email" name="eMail" placeholder="e-mail" value="${cv.contact.eMail}"><br><br><br>
+               value="${cv_edit.contact.address}"><br><br>
+        <input type="email" name="eMail" placeholder="e-mail" value="${cv_edit.contact.eMail}"><br><br><br>
 
 
         <div class="job_place" id="job0" style="display: none">
@@ -186,9 +185,7 @@
 
         <div class="smalltext" id="three_j" style="display: none">you can add up to three places of work</div>
         <br>
-        <a href="#new_job-place" id="butt" style="display: initial"
-           onclick=show()>Add job place..</a><br>
-
+        <a href="#new_job-place" id="butt" style="display: initial" onclick=show()>Add job place..</a><br>
         <script>
             function show() {
                 var x = document.getElementById("job0");
@@ -218,20 +215,13 @@
 
 <div class="main" align="center">
 
-    <div class="card">
+    <div class="card" id="display">
         <div class="row">
-
-<%--            <div class="column" hidden="hidden">--%>
-<%--                <img src="${url}" class="avatar" alt="photo" style="width: 50%" align="left">--%>
-<%--            </div>--%>
-
             <div class="column">
-
                 <div>
                     <h1>${cv.person.firstName} ${cv.person.lastName}</h1>
                     <h4>${cv.person.birthday} ${age}</h4>
                 </div>
-
                 <div>
                     <h3>${contact}</h3>
                     <p>${cv.contact.phoneNumber}</p>
@@ -260,8 +250,6 @@
 
 </div>
 
-
-<%//<td><a class="btn btn-info" href="${pageContext.request.contextPath}/person_info?personId=${person.id}" role="button">Full resume</a></td>%>
 
 </body>
 </html>

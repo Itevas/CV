@@ -151,37 +151,15 @@
 </head>
 <body>
 
-<h1>List of candidates</h1>
-<p>${cv}
-
 <div class="sidenav">
-    <div class="search-container">
-        <form action="${pageContext.request.contextPath}/">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-    <a href="#">Sort by:</a>
-    <div class="list">
-        <a href="#">Name</a>
-        <a href="#">Last Name</a>
-        <a href="#">Skill</a>
-    </div>
 </div>
 
-
 <div class="main" align="center">
-
-
     <c:forEach items="${cvList}" var="cv">
         <tr>
             <td>
                 <div class="card" id="${cv.id}" align="center" style="width: 85%">
                     <div class="row">
-                            <%--<div class="column">--%>
-                            <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar"--%>
-                            <%--style="width: 30%" align="left">--%>
-                            <%--</div>--%>
                         <div class="column" style="width: 25%">
                             <h3>${cv.person.firstName} ${cv.person.lastName}</h3>
                             <p> ${cv.person.age} </p>
@@ -201,7 +179,6 @@
                                 <p><b>E-mail: ${cv.contact.eMail}</b></p>
                             </div>
                         </div>
-
                         <div class="column" align="right">
                             <div class="list">
                                 <input class="idHolder" value="${cv.id}" id="holder" hidden="hidden">
@@ -328,7 +305,6 @@
         document.getElementById("overlay").style.display = "none";
     }
 </script>
-
 
 </body>
 </html>
