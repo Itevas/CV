@@ -125,15 +125,15 @@
 
     <form class="form" id="form" action="${pageContext.request.contextPath}/" method="post">
 
-        <input type="text" name="firstName" placeholder="First name" value="${cv.person.firstName}"><br><br>
-        <input type="text" name="lastName" placeholder="Last name" value="${cv.person.lastName}"><br><br>
+        <input type="text" name="firstName" placeholder="First name" value="${cvFields.person.firstName}"><br><br>
+        <input type="text" name="lastName" placeholder="Last name" value="${cvFields.person.lastName}"><br><br>
         <div class="simpletext">Birthday:</div>
-        <input type="date" name="birthday" placeholder="Birthday" value="${cv.person.birthday}"><br><br>
+        <input type="date" name="birthday" placeholder="Birthday" value="${cvFields.person.birthday}"><br><br>
 
-        <input type="tel" name="phoneNumber" placeholder="phone" value="${cv.contact.phoneNumber}"><br><br>
+        <input type="tel" name="phoneNumber" placeholder="phone" value="${cvFields.contact.phoneNumber}"><br><br>
         <input type="text" name="address" placeholder="address (street, city, country)"
                value="${cvFields.contact.address}"><br><br>
-        <input type="email" name="eMail" placeholder="e-mail" value="${cv.contact.eMail}"><br><br><br>
+        <input type="email" name="eMail" placeholder="e-mail" value="${cvFields.contact.eMail}"><br><br><br>
 
 
         <div class="job_place" id="job0" style="display: none">
@@ -221,9 +221,9 @@
     <div class="card">
         <div class="row">
 
-<%--            <div class="column" hidden="hidden">--%>
-<%--                <img src="${url}" class="avatar" alt="photo" style="width: 50%" align="left">--%>
-<%--            </div>--%>
+            <div class="column" hidden="hidden">
+                <img src="${url}" class="avatar" alt="photo" style="width: 50%" align="left">
+            </div>
 
             <div class="column">
 

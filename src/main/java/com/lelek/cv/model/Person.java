@@ -35,9 +35,6 @@ public class Person {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthday;
 
-    @JsonIgnore
-    private String age;
-
     public String getFirstName() {
         return firstName;
     }
@@ -49,6 +46,9 @@ public class Person {
     public LocalDate getBirthday() {
         return birthday;
     }
+
+    @JsonIgnore
+    private String age;
 
     public String getAge() {
         return String.valueOf("(" + Period.between(getBirthday(), LocalDate.now()).getYears() + " years old)");
