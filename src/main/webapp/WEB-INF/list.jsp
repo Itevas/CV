@@ -1,4 +1,3 @@
-<%@ page import="com.lelek.cv.service.CvFacade" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -152,33 +151,14 @@
 <body>
 
 <div class="sidenav">
-    <div class="search-container">
-        <form action="${pageContext.request.contextPath}/">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-    <a href="#">Sort by:</a>
-    <div class="list">
-        <a href="#">Name</a>
-        <a href="#">Last Name</a>
-        <a href="#">Skill</a>
-    </div>
 </div>
 
-
 <div class="main" align="center">
-
-
     <c:forEach items="${cvList}" var="cv">
         <tr>
             <td>
                 <div class="card" id="${cv.id}" align="center" style="width: 85%">
                     <div class="row">
-                            <%--<div class="column">--%>
-                            <%--<img src="${pageContext.request.contextPath}avatar/wanted.png" class="avatar" alt="avatar"--%>
-                            <%--style="width: 30%" align="left">--%>
-                            <%--</div>--%>
                         <div class="column" style="width: 25%">
                             <h3>${cv.person.firstName} ${cv.person.lastName}</h3>
                             <p> ${cv.person.age} </p>
@@ -198,17 +178,12 @@
                                 <p><b>E-mail: ${cv.contact.eMail}</b></p>
                             </div>
                         </div>
-
                         <div class="column" align="right">
                             <div class="list">
                                 <input class="idHolder" value="${cv.id}" id="holder" hidden="hidden">
-                                <a href="#" class="deploy" id="${cv.id}">Deploy</a><br>
-                                <a href="#"class="edit" id="${cv.id}">Edit</a><br>
                                 <a href="#" class="delete" id="${cv.id}">Delete</a><br>
-                                <a href="#">Export</a><br>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </td>
@@ -216,20 +191,6 @@
     </c:forEach>
 
 </div>
-
-<script>
-    $("[href].edit").click(function () {
-        var cv_id = $(this).attr("id");
-        $.ajax({
-            type: "GET",
-            url: "/add",
-            data: {id: cv_id},
-            success: function (response) {
-                window.open("/add");
-            }
-        })
-    })
-</script>
 
 <script>
     $("[href].delete").click(function () {
@@ -248,73 +209,6 @@
             })
         }
     })
-</script>
-
-<div class="show" id="overlay">
-
-    <div class="card">
-        <div class="row">
-
-<%--            <div class="column" hidden="hidden">--%>
-<%--                <img src="${url}" class="avatar" alt="photo" style="width: 50%" align="left">--%>
-<%--            </div>--%>
-
-                <div>
-                    <h1>${preview.person.firstName} ${preview.person.lastName}</h1>
-                    <h4>${preview.person.birthday} ${age}</h4>
-                </div>
-
-                <div>
-                    <h3>Contact:</h3>
-                    <p>${preview.contact.phoneNumber}</p>
-                    <p>${preview.contact.address}</p>
-                    <p>${preview.contact.eMail}</p>
-                </div>
-
-                <c:forEach items="${preview.jobPlaces}" var="jobPlace">
-                    <tr>
-                        <td>
-                            <div class="column">
-                                <h3>JobPlace:</h3>
-                                <p>${jobPlace.company}</p>
-                                <p>${jobPlace.city}</p>
-                                <p>From:  ${jobPlace.from}</p>
-                                <p>To:  ${jobPlace.to}</p>
-                                <p>${jobPlace.position}</p>
-                            </div>
-                        </td>
-                    </tr>
-                </c:forEach>
-
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<script>
-    $("[href].deploy").click(function () {
-        var cv_id = $(this).attr("id");
-        $.ajax({
-            type: "PUT",
-            url: "/list",
-            data: {id : cv_id},
-            success: function (response) {
-                on();
-            }
-        });
-        $(document).keyup(function(e) {
-            if (e.key === "Escape") {
-                off();
-            }
-        });
-    });
-    function on() {
-        document.getElementById("overlay").style.display = "block";
-    }
-    function off() {
-        document.getElementById("overlay").style.display = "none";
-    }
 </script>
 
 </body>
