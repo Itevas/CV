@@ -47,7 +47,6 @@ public class Person {
         return birthday;
     }
 
-    @JsonIgnore
     private String age;
 
     public String getAge() {

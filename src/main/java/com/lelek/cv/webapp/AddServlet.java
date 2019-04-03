@@ -1,5 +1,6 @@
 package com.lelek.cv.webapp;
 
+import com.lelek.cv.dao.DaoCv;
 import com.lelek.cv.model.*;
 
 import javax.servlet.ServletException;
@@ -8,23 +9,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 
-@WebServlet(urlPatterns = "/")
-public class NewCvServlet extends HttpServlet {
-    private final String PATH = "C:/Users/vleletc/IdeaProjects/cv/src/main/resources/temp.yml";
-    private Cv cv;
+@WebServlet(urlPatterns = "/add")
+public class AddServlet extends HttpServlet {
+    private final static Logger LOGGER = Logger.getLogger("com.lelek.cv.webapp.AddServlet");
+
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Cv cv = null;
+        int id = 0;
+        String idString = request.getParameter("id");
+        if (idString == null) {
+            LOGGER.severe("id = " + idString);
+        } else {
+            LOGGER.severe("id = " + idString);
+            id = Integer.valueOf(idString);
+        }
+        try {
+            LOGGER.severe("id try = "+ id);
+            cv = new DaoCv().get(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        request.setAttribute("cv", cv);
         request.getRequestDispatcher("/WEB-INF/add.jsp").forward(request, response);
     }
 
+
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        cv = new Cv();
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Cv cv = new Cv();
         List<JobPlace> jobPlaces = new ArrayList<>();
         cv.setPerson(new Person.PersonBuilder()
                 .firstName(request.getParameter("firstName"))
@@ -36,7 +57,7 @@ public class NewCvServlet extends HttpServlet {
                 .address(request.getParameter("address"))
                 .eMail(request.getParameter("eMail"))
                 .build());
-        if(!request.getParameter("company0").isEmpty()) {
+        if (!request.getParameter("company0").isEmpty()) {
             jobPlaces.add(new JobPlace.JobPlaceBuilder()
                     .company(request.getParameter("company0"))
                     .city(request.getParameter("city0"))
@@ -45,7 +66,7 @@ public class NewCvServlet extends HttpServlet {
                     .position(Position.getByName(request.getParameter("position0")))
                     .build());
         }
-        if(!request.getParameter("company1").isEmpty()) {
+        if (!request.getParameter("company1").isEmpty()) {
             jobPlaces.add(new JobPlace.JobPlaceBuilder()
                     .company(request.getParameter("company1"))
                     .city(request.getParameter("city1"))
@@ -54,7 +75,7 @@ public class NewCvServlet extends HttpServlet {
                     .position(Position.getByName(request.getParameter("position1")))
                     .build());
         }
-        if(!request.getParameter("company2").isEmpty()) {
+        if (!request.getParameter("company2").isEmpty()) {
             jobPlaces.add(new JobPlace.JobPlaceBuilder()
                     .company(request.getParameter("company2"))
                     .city(request.getParameter("city2"))
@@ -69,7 +90,7 @@ public class NewCvServlet extends HttpServlet {
 
     }
 
-    private void setFieldsValues(Cv cv, HttpServletRequest request){
+    private void setFieldsValues(Cv cv, HttpServletRequest request) {
         request.setAttribute("cvFields", cv);
     }
 

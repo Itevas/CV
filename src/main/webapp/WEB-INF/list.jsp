@@ -116,8 +116,9 @@
             z-index: 2;
             cursor: pointer;
         }
-        .show p{
-            color: #ffffff;
+        .show{
+            align-items: center;
+            font-size: 25px;
         }
     </style>
 
@@ -125,18 +126,18 @@
 <body>
 
 <div class="sidenav">
-    <div class="search-container">
-        <form action="${pageContext.request.contextPath}/">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-    <a href="#">Sort by:</a>
-    <div class="list">
-        <a href="#">Name</a>
-        <a href="#">Last Name</a>
-        <a href="#">Skill</a>
-    </div>
+    <%--<div class="search-container">--%>
+        <%--<form action="${pageContext.request.contextPath}/">--%>
+            <%--<input type="text" placeholder="Search.." name="search">--%>
+            <%--<button type="submit"><i class="fa fa-search"></i></button>--%>
+        <%--</form>--%>
+    <%--</div>--%>
+    <%--<a href="#">Sort by:</a>--%>
+    <%--<div class="list">--%>
+        <%--<a href="#">Name</a>--%>
+        <%--<a href="#">Last Name</a>--%>
+        <%--<a href="#">Skill</a>--%>
+    <%--</div>--%>
 </div>
 
 
@@ -175,7 +176,7 @@
 <div class="column" align="right">
     <div class="list">
         <input class="idHolder" value="${cv.id}" id="holder" hidden="hidden">
-        <a href="#" class="deploy" id="${cv.id}">Deploy</a><br>
+        <a href="#" class="deploy" id="${cv.id}">Preview</a><br>
         <a href="#"class="edit" id="${cv.id}">Edit</a><br>
         <a href="#" class="delete" id="${cv.id}">Delete</a><br>
         <a href="#">Export</a><br>
@@ -193,13 +194,11 @@
 <script>
     $("[href].edit").click(function () {
         var cv_id = $(this).attr("id");
+        window.open("/add");
         $.ajax({
             type: "GET",
             url: "/add",
-            data: {id: cv_id},
-            success: function (response) {
-                window.open("/add");
-            }
+            data: {id: cv_id}
         })
     })
 </script>
@@ -224,41 +223,16 @@
 </script>
 
 <div class="show" id="overlay">
-
     <div class="card">
         <div class="row">
-
-            <%--            <div class="column" hidden="hidden">--%>
-            <%--                <img src="${url}" class="avatar" alt="photo" style="width: 50%" align="left">--%>
-            <%--            </div>--%>
-
-            <div>
-                <h1>${preview.person.firstName} ${preview.person.lastName}</h1>
-                <h4>${preview.person.birthday} ${age}</h4>
+            <div class="column">
+                <div id="person"></div>
+                <div id="age"></div>
+                <div id="phone"></div>
+                <div id="address"></div>
+                <div id="e-mail"></div>
+                <div class="skills" id="skill"></div>
             </div>
-
-            <div>
-                <h3>Contact:</h3>
-                <p>${preview.contact.phoneNumber}</p>
-                <p>${preview.contact.address}</p>
-                <p>${preview.contact.eMail}</p>
-            </div>
-
-            <c:forEach items="${preview.jobPlaces}" var="jobPlace">
-                <tr>
-                    <td>
-                        <div class="column">
-                            <h3>JobPlace:</h3>
-                            <p>${jobPlace.company}</p>
-                            <p>${jobPlace.city}</p>
-                            <p>From:  ${jobPlace.from}</p>
-                            <p>To:  ${jobPlace.to}</p>
-                            <p>${jobPlace.position}</p>
-                        </div>
-                    </td>
-                </tr>
-            </c:forEach>
-
         </div>
     </div>
 </div>
@@ -269,25 +243,31 @@
     $("[href].deploy").click(function () {
         var cv_id = $(this).attr("id");
         $.ajax({
-            type: "PUT",
+            type: "POST",
             url: "/list",
             data: {id : cv_id},
             success: function (response) {
-                on();
+                document.getElementById("overlay").style.display = "block";
+                var preview = jQuery.parseJSON(response);
+                var skills = preview.skills;
+                var jobs = preview.jobPlaces;
+                document.getElementById("person").innerHTML = preview.person.firstName +" "+ preview.person.lastName;
+                document.getElementById("age").innerHTML = preview.person.age;
+                document.getElementById("phone").innerHTML = preview.contact.phoneNumber;
+                document.getElementById("address").innerHTML = preview.contact.address;
+                document.getElementById("e-mail").innerHTML = preview.contact.eMail;
+                document.getElementById("skill").innerHTML = response;
+                // $.each(preview.skills, function (key, value) {
+                //     document.getElementById("skill").innerHTML = value.skill+" ";
+                // })
             }
         });
         $(document).keyup(function(e) {
             if (e.key === "Escape") {
-                off();
+                document.getElementById("overlay").style.display = "none";
             }
         });
     });
-    function on() {
-        document.getElementById("overlay").style.display = "block";
-    }
-    function off() {
-        document.getElementById("overlay").style.display = "none";
-    }
 </script>
 
 </body>

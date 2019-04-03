@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>New CV</title>
+    <title>Edit CV</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
@@ -31,16 +31,16 @@
         }
 
         .sidenav input[type=submit] {
-             float: left;
-             padding: 6px;
-             margin-bottom: 12px;
-             margin-left: 16px;
-             font-size: 17px;
-             border: none;
-             width: 50%;
-             background-color: #0011af;
-             color: #fcfcfc;
-         }
+            float: left;
+            padding: 6px;
+            margin-bottom: 12px;
+            margin-left: 16px;
+            font-size: 17px;
+            border: none;
+            width: 50%;
+            background-color: #0011af;
+            color: #fcfcfc;
+        }
 
         .sidenav .drop{
             float: left;
@@ -116,19 +116,9 @@
 </head>
 <body>
 
-<div class="id" align="center"><%= request.getAttribute("id")%></div>
-<div class="id" align="center"><%= request.getAttribute("cv")%></div>
-<div class="id" align="center"><%= request.getParameter("cv")%></div>
-<div class="id" align="center"><%= request.getParameter("id")%></div>
-<div class="id" align="center"><%= request.getInputStream()%></div>
-
-
-
 <div class="sidenav">
-    <div class="headingtext">Create CV</div>
-    <br>
 
-    <div class="simpletext">fill the form:</div>
+    <div class="simpletext">Edit the form:</div>
     <br>
 
     <form class="form" id="form" action="<c:url value="/WEB-INF/add.jsp"/>" method="post">

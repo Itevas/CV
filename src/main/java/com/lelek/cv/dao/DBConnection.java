@@ -8,7 +8,7 @@ public class DBConnection {
     private static final Logger LOGGER = Logger.getLogger("com.lelek.cv.service.DBConnection");
     private static DBConnection instance;
 
-    private final String URL = "jdbc:postgresql://localhost:5432/cv";
+    private final String URL = "jdbc:postgresql://localhost:5432/cv_lelek";
     private final String user = "postgres";
     private final String pass = "root";
     private Connection connection;

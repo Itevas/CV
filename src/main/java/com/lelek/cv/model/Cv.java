@@ -57,7 +57,7 @@ public class Cv {
 
     @Override
     public String toString() {
-        return "Cv{" +
+        return "{" +
                 "id=" + id +
                 ", person=" + person +
                 ", contact=" + contact +
