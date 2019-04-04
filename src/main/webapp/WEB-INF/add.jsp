@@ -116,14 +116,6 @@
 </head>
 <body>
 
-<div class="id" align="center"><%= request.getAttribute("id")%></div>
-<div class="id" align="center"><%= request.getAttribute("cv")%></div>
-<div class="id" align="center"><%= request.getParameter("cv")%></div>
-<div class="id" align="center"><%= request.getParameter("id")%></div>
-<div class="id" align="center"><%= request.getInputStream()%></div>
-
-
-
 <div class="sidenav">
     <div class="headingtext">Create CV</div>
     <br>

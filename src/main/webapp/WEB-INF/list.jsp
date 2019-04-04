@@ -126,6 +126,7 @@
 <body>
 
 <div class="sidenav">
+    <a href="#" class="add">Add new cv</a>
     <%--<div class="search-container">--%>
         <%--<form action="${pageContext.request.contextPath}/">--%>
             <%--<input type="text" placeholder="Search.." name="search">--%>
@@ -177,7 +178,7 @@
     <div class="list">
         <input class="idHolder" value="${cv.id}" id="holder" hidden="hidden">
         <a href="#" class="deploy" id="${cv.id}">Preview</a><br>
-        <a href="#"class="edit" id="${cv.id}">Edit</a><br>
+        <a href="#" class="edit" id="${cv.id}">Edit</a><br>
         <a href="#" class="delete" id="${cv.id}">Delete</a><br>
         <a href="#">Export</a><br>
     </div>
@@ -192,14 +193,21 @@
 </div>
 
 <script>
+    $("[href].add").click(function () {
+        location.replace("/add");
+    })
+</script>
+
+<script>
     $("[href].edit").click(function () {
         var cv_id = $(this).attr("id");
-        window.open("/add");
+        location.replace("/edit");
         $.ajax({
-            type: "GET",
-            url: "/add",
+            type: "POST",
+            url: "/edit",
             data: {id: cv_id}
         })
+
     })
 </script>
 
