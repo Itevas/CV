@@ -1,0 +1,6 @@
+//Handle exceptions
+//Code convention
+//Check references
+//Tests
+//Check mappers
+//write in file from UI
