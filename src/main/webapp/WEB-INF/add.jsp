@@ -123,8 +123,9 @@
     <div class="simpletext">fill the form:</div>
     <br>
 
-    <form class="form" id="form" action="<c:url value="/WEB-INF/add.jsp"/>" method="post">
+    <form class="form" id="form" action="add" method="post">
 
+        <input type="number" name="id" hidden="hidden" value="-1">
         <input type="text" name="firstName" placeholder="First name" value="${cv.person.firstName}"><br><br>
         <input type="text" name="lastName" placeholder="Last name" value="${cv.person.lastName}"><br><br>
         <div class="simpletext">Birthday:</div>
@@ -135,6 +136,26 @@
                value="${cv.contact.address}"><br><br>
         <input type="email" name="eMail" placeholder="e-mail" value="${cv.contact.eMail}"><br><br><br>
 
+        <div class="simpletext">Skills:</div>
+        <div class="smalltext">hold ctrl to select multiple items</div>
+        <select multiple="multiple" size="4" class="drop" name="skills[]" form="form">
+            <option value="Java">Java</option>
+            <option value="C#">C#</option>
+            <option value="SQL">SQL</option>
+            <option value="Python">Python</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="PHP">PHP</option>
+            <option value="C++">C++</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="Swift">Swift</option>
+            <option value="Ruby">Ruby</option>
+            <option value="Kotlin">Kotlin</option>
+            <option value="C">C</option>
+            <option value="Scala">Scala</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+        </select>
+
 
         <div class="job_place" id="job0" style="display: none">
             <div class="simpletext">Job Place #1</div>
@@ -144,6 +165,7 @@
             <input type="date" name="from0"><br><br><br>
             <div class="simpletext">To:</div>
             <input type="date" name="to0"><br>
+            <div class="simpletext">Position:</div>
             <select class="drop" name="position0" form="form">
                 <option value="">select position</option>
                 <option value="Developer">Developer</option>
@@ -210,40 +232,46 @@
         </script>
 
         <div class="marg">
-            <input type="submit" value="Preview">
+            <input type="submit" form="form" value="Submit">
         </div>
     </form>
 </div>
 
-
-<div class="main" align="center">
+<div class="main" align="center" hidden="hidden">
 
     <div class="card">
-        <div class="row">
-
+        <div class="row" align="center">
             <div class="column" hidden="hidden">
                 <img src="${url}" class="avatar" alt="photo" style="width: 50%" align="left">
             </div>
 
             <div class="column">
+                <h1>${cv.person.firstName} ${cv.person.lastName}</h1>
+                <h4>${cv.person.birthday} ${age}</h4>
+            </div>
+            <div class="column">
+                <h3>Skills: </h3>
+                <c:forEach items="${cv.skills}" var="skills">
+                    <tr>
+                        <td>
+                            <p>${skills.skill}</p>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </div>
 
-                <div>
-                    <h1>${cv.person.firstName} ${cv.person.lastName}</h1>
-                    <h4>${cv.person.birthday} ${age}</h4>
-                </div>
-
-                <div>
-                    <h3>${contact}</h3>
-                    <p>${cv.contact.phoneNumber}</p>
-                    <p>${cv.contact.address}</p>
-                    <p>${cv.contact.eMail}</p>
-                </div>
-
+            <div class="column">
+                <h3>Contacts: </h3>
+                <p>${cv.contact.phoneNumber}</p>
+                <p>${cv.contact.address}</p>
+                <p>${cv.contact.eMail}</p>
+            </div>
+            <div class="row" align="center">
                 <c:forEach items="${cv.jobPlaces}" var="jobPlace">
                     <tr>
                         <td>
                             <div class="column">
-                                <h3>${jobPlaces}</h3>
+                                <h3>Job place: </h3>
                                 <p>${jobPlace.company}</p>
                                 <p>${jobPlace.city}</p>
                                 <p>${fromTxt} ${jobPlace.from}</p>

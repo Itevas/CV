@@ -230,8 +230,8 @@
     })
 </script>
 
-<div class="show" id="overlay">
-    <div class="card">
+<div class="show" id="overlay" align="center">
+    <div class="card" align="center" style="margin: 100px">
         <div class="row">
             <div class="column">
                 <div id="person"></div>

@@ -95,7 +95,7 @@ public class AddServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        request.getRequestDispatcher("/WEB-INF/list.jsp").forward(request, response);
+        new ListServlet().doGet(request, response);
         // Response updated/added successfully
     }
 }

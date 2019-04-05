@@ -18,12 +18,11 @@ public class DaoCv {
     private Connection connect;
     private final static Logger LOGGER = Logger.getLogger("com.lelek.cv.dao.DaoCv");
 
-// don't works with empty job_place ((((
     private final String GET_CV = "SELECT DISTINCT *\n" +
             "FROM person\n" +
-            "JOIN skills ON person.id = skills.person_id\n" +
-            "JOIN contact ON person.id = contact.person_id\n" +
-            "JOIN job_place ON person.id = job_place.person_id\n" +
+            "LEFT JOIN skills ON person.id = skills.person_id\n" +
+            "LEFT JOIN contact ON person.id = contact.person_id\n" +
+            "LEFT JOIN job_place ON person.id = job_place.person_id\n" +
             "WHERE id =?;";
 
     private final String UPDATE_PERSON = "UPDATE person\n" +
@@ -52,10 +51,10 @@ public class DaoCv {
             "person_id = ?;";
 
     private final String INSERT_PERSON =
-            "INSERT INTO person (firstname, lastname, birthday) VALUES (?, ?, ?) RETURNING id";
-    private final String INSERT_CONTACT = "INSERT INTO contact (phonenumber, address, email, person_id) VALUES (? ,? ,?, ?)";
+            "INSERT INTO person (first_name, last_name, birthday) VALUES (?, ?, ?) RETURNING id";
+    private final String INSERT_CONTACT = "INSERT INTO contact (phone_number, address, e_mail, person_id) VALUES (? ,? ,?, ?)";
     private final String INSERT_SKILLS = "INSERT INTO skills (skill, person_id) VALUES (? ,?)";
-    private final String INSERT_JOBP_LACE = "INSERT INTO job_place (company, city, from_date, " +
+    private final String INSERT_JOB_PLACE = "INSERT INTO job_place (company, city, from_date, " +
             "to_date, position_at, id) VALUES (?, ?, ?, ?, ?, ?)";
 
     private final String DELETE_CONTACT = "DELETE FROM contact WHERE person_id = ?;";
@@ -77,11 +76,11 @@ public class DaoCv {
         statement.setInt(1, cv.getId());
         statement.setInt(2, cv.getId());
         statement.executeUpdate();
-        set(cv, UPDATE_PERSON, UPDATE_CONTACT, INSERT_SKILLS, INSERT_JOBP_LACE);
+        set(cv, UPDATE_PERSON, UPDATE_CONTACT, INSERT_SKILLS, INSERT_JOB_PLACE);
     }
 
     public void add(Cv cv) throws SQLException {
-        set(cv, INSERT_PERSON, INSERT_CONTACT, INSERT_SKILLS, INSERT_JOBP_LACE);
+        set(cv, INSERT_PERSON, INSERT_CONTACT, INSERT_SKILLS, INSERT_JOB_PLACE);
     }
 
     private void set(Cv cv, String person, String contact, String skills, String jobPlaces) throws SQLException {
@@ -89,7 +88,7 @@ public class DaoCv {
         personStatement.setString(1, cv.getPerson().getFirstName());
         personStatement.setString(2, cv.getPerson().getLastName());
         personStatement.setDate(3, java.sql.Date.valueOf(cv.getPerson().getBirthday()));
-        if(cv.getId() == -1){
+        if (cv.getId() == -1) {
             ResultSet resultSet = personStatement.executeQuery();
             if (resultSet.next()) {
                 cv.setId(resultSet.getInt("id"));
@@ -149,13 +148,15 @@ public class DaoCv {
                 .build());
         while (resultSet.next()) {
             skills.add(Skill.getByName(resultSet.getString("skill")));
-            jobPlaces.add(new JobPlace.JobPlaceBuilder()
-                    .city(resultSet.getString("city"))
-                    .company(resultSet.getString("company"))
-                    .from(resultSet.getDate("from_date").toLocalDate())
-                    .to(resultSet.getDate("to_date").toLocalDate())
-                    .position(Position.valueOf(resultSet.getString("position_at")))
-                    .build());
+            if (resultSet.getString("city") != null) {
+                jobPlaces.add(new JobPlace.JobPlaceBuilder()
+                        .city(resultSet.getString("city"))
+                        .company(resultSet.getString("company"))
+                        .from(resultSet.getDate("from_date").toLocalDate())
+                        .to(resultSet.getDate("to_date").toLocalDate())
+                        .position(Position.valueOf(resultSet.getString("position_at")))
+                        .build());
+            }
         }
         cv.setSkills(new ArrayList<>(skills));
         cv.setJobPlaces(new ArrayList<>(jobPlaces));
