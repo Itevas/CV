@@ -3,17 +3,17 @@ package com.lelek.cv.dao;
 import java.sql.*;
 import java.util.logging.Logger;
 
-public class DBConnection {
+public class DaoConnection {
 
-    private static final Logger LOGGER = Logger.getLogger("com.lelek.cv.service.DBConnection");
-    private static DBConnection instance;
+    private static final Logger LOGGER = Logger.getLogger("com.lelek.cv.service.DaoConnection");
+    private static DaoConnection instance;
 
     private final String URL = "jdbc:postgresql://localhost:5432/cv_lelek";
     private final String user = "postgres";
     private final String pass = "root";
     private Connection connection;
 
-    private DBConnection() throws SQLException, ClassNotFoundException {
+    private DaoConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         this.connection = DriverManager.getConnection(URL, user, pass);
         if (connection != null) {
@@ -27,11 +27,11 @@ public class DBConnection {
         return connection;
     }
 
-    public static DBConnection getInstance() throws SQLException, ClassNotFoundException{
+    public static DaoConnection getInstance() throws SQLException, ClassNotFoundException{
         if (instance == null){
-            instance = new DBConnection();
+            instance = new DaoConnection();
         } else if (instance.getConnection().isClosed()){
-            instance = new DBConnection();
+            instance = new DaoConnection();
         }
         return instance;
     }

@@ -14,7 +14,7 @@ public class DaoClear {
 
     public DaoClear() {
         try {
-            Connection connect = DBConnection.getInstance().getConnection();
+            Connection connect = DaoConnection.getInstance().getConnection();
             this.connect = connect;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

@@ -37,18 +37,6 @@ public class DaoCv {
             "e_mail = ?\n" +
             "WHERE\n" +
             "person_id = ?;";
-    private final String UPDATE_SKILLS = "UPDATE skills\n" +
-            "SET skill = ?\n" +
-            "WHERE\n" +
-            "person_id = ?;";
-    private final String UPDATE_JOBP_LACE = "UPDATE job_place\n" +
-            "SET company = ?,\n" +
-            "city = ?,\n" +
-            "from_date = ?,\n" +
-            "to_date = ?,\n" +
-            "position_at = ?\n" +
-            "WHERE\n" +
-            "person_id = ?;";
 
     private final String INSERT_PERSON =
             "INSERT INTO person (first_name, last_name, birthday) VALUES (?, ?, ?) RETURNING id";
@@ -64,7 +52,7 @@ public class DaoCv {
 
     public DaoCv() {
         try {
-            Connection connect = DBConnection.getInstance().getConnection();
+            Connection connect = DaoConnection.getInstance().getConnection();
             this.connect = connect;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -164,18 +152,16 @@ public class DaoCv {
     }
 
     public void delete(int cvId) throws SQLException {
-        PreparedStatement contactStatement = connect.prepareStatement(DELETE_JOB_PLACE);
-        contactStatement.setInt(1, cvId);
-        contactStatement.execute();
-        PreparedStatement jobPlaceStatement = connect.prepareStatement(DELETE_CONTACT);
-        jobPlaceStatement.setInt(1, cvId);
-        jobPlaceStatement.execute();
-        PreparedStatement skillsStatement = connect.prepareStatement(DELETE_SKILLS);
-        skillsStatement.setInt(1, cvId);
-        skillsStatement.execute();
-        PreparedStatement personStatement = connect.prepareStatement(DELETE_PERSON);
-        personStatement.setInt(1, cvId);
-        personStatement.execute();
+        deleteTable(cvId, DELETE_CONTACT);
+        deleteTable(cvId, DELETE_SKILLS);
+        deleteTable(cvId, DELETE_JOB_PLACE);
+        deleteTable(cvId, DELETE_PERSON);
+    }
+
+    private void deleteTable(int cvId, String query) throws SQLException{
+        PreparedStatement preparedStatement = connect.prepareStatement(query);
+        preparedStatement.setInt(1, cvId);
+        preparedStatement.execute();
     }
 
 }

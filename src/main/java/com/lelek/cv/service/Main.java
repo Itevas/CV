@@ -5,16 +5,16 @@ import com.lelek.cv.model.Cv;
 import java.io.IOException;
 import java.sql.SQLException;
 
-//Create UI
-//Navigate in Servlets
+
+
 //Create War and launch from console
 //Handle exceptions
-//Dao cut
-//id names DB
-//logs
-//rename variables
 //Code convention
-//bff14b0b2d
+//Delete this class Main
+//Check references
+//Tests
+//Check mappers
+//write in file from UI
 
 public class Main {
 
