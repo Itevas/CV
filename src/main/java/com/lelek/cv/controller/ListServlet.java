@@ -1,4 +1,4 @@
-package com.lelek.cv.webapp;
+package com.lelek.cv.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;

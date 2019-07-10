@@ -1,4 +1,4 @@
-package com.lelek.cv.webapp;
+package com.lelek.cv.controller;
 
 import com.lelek.cv.dao.DaoCv;
 import com.lelek.cv.model.Cv;
