@@ -1,6 +1,5 @@
 package com.lelek.cv.controller;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lelek.cv.dao.DaoCv;
 import com.lelek.cv.dao.DaoList;
